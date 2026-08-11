@@ -1,4 +1,4 @@
-import Ferrofluid from './components/Ferrofluid/Ferrofluid'
+import SideRays from './components/SideRays/SideRays'
 import CompassLogo from './components/CompassLogo'
 
 const gameModes = [
@@ -21,22 +21,18 @@ export default function App() {
     <main className="site-shell">
       <section className="hero" id="start">
         <div className="hero__background" aria-hidden="true">
-          <Ferrofluid
-            colors={['#fff7d6', '#f1c75b', '#c18b27', '#ffffff']}
-            speed={0.2}
-            scale={1.45}
-            turbulence={0.78}
-            fluidity={0.12}
-            rimWidth={0.18}
-            sharpness={2.8}
-            shimmer={0.95}
-            glow={1.9}
-            opacity={0.72}
-            flowDirection="down"
-            mouseInteraction
-            mouseStrength={0.65}
-            mouseRadius={0.25}
-            mouseDampening={0.14}
+          <SideRays
+            speed={2.5}
+            rayColor1="#EAB308"
+            rayColor2="#FFF4CC"
+            intensity={2}
+            spread={2}
+            origin="top-right"
+            tilt={0}
+            saturation={1.35}
+            blend={0.52}
+            falloff={1.6}
+            opacity={0.9}
           />
         </div>
         <div className="hero__shade" aria-hidden="true" />
