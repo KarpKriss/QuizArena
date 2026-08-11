@@ -8,11 +8,11 @@ const compassLogo = `data:image/png;base64,${part1}${part2}${part3}${part4}${par
 
 export default function CompassLogo({ compact = false }: { compact?: boolean }) {
   return (
-    <img
+    <span
       className={compact ? 'compass-logo compass-logo--compact' : 'compass-logo'}
-      src={compassLogo}
-      alt="Quiz Arena — róża wiatrów"
-      draggable={false}
+      role="img"
+      aria-label="Quiz Arena — róża wiatrów"
+      style={{ backgroundImage: `url(${compassLogo})` }}
     />
   )
 }
