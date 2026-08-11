@@ -1,4 +1,5 @@
 import Ferrofluid from './components/Ferrofluid/Ferrofluid'
+import CompassLogo from './components/CompassLogo'
 
 const gameModes = [
   { number: '01', name: 'Rosyjska ruletka', text: 'Presja czasu, szybkie decyzje i ryzyko, które może się opłacić.' },
@@ -21,21 +22,21 @@ export default function App() {
       <section className="hero" id="start">
         <div className="hero__background" aria-hidden="true">
           <Ferrofluid
-            colors={['#ff2d95', '#9d3cff', '#5b4bff', '#2cc8ff']}
-            speed={0.28}
-            scale={1.35}
-            turbulence={0.95}
-            fluidity={0.11}
-            rimWidth={0.22}
-            sharpness={2.4}
-            shimmer={1.2}
-            glow={2.4}
-            opacity={0.95}
+            colors={['#fff7d6', '#f1c75b', '#c18b27', '#ffffff']}
+            speed={0.2}
+            scale={1.45}
+            turbulence={0.78}
+            fluidity={0.12}
+            rimWidth={0.18}
+            sharpness={2.8}
+            shimmer={0.95}
+            glow={1.9}
+            opacity={0.72}
             flowDirection="down"
             mouseInteraction
-            mouseStrength={0.85}
-            mouseRadius={0.28}
-            mouseDampening={0.12}
+            mouseStrength={0.65}
+            mouseRadius={0.25}
+            mouseDampening={0.14}
           />
         </div>
         <div className="hero__shade" aria-hidden="true" />
@@ -43,8 +44,8 @@ export default function App() {
         <header className="topbar-wrap">
           <nav className="topbar" aria-label="Główna nawigacja">
             <a className="brand-mini" href="#start" aria-label="Quiz Arena — strona główna">
-              <span className="brand-mini__mark">QA</span>
-              <span>QUIZ ARENA</span>
+              <span className="brand-mini__mark"><CompassLogo compact /></span>
+              <span className="brand-mini__text"><strong>QUIZ</strong> <em>ARENA</em></span>
             </a>
 
             <div className="topbar__links">
@@ -54,7 +55,7 @@ export default function App() {
               <a href="#karty">Karty</a>
             </div>
 
-            <a className="topbar__cta" href="#o-grze">Wejdź do gry</a>
+            <a className="topbar__cta" href="#o-grze">Wejdź do Areny</a>
           </nav>
         </header>
 
@@ -65,10 +66,7 @@ export default function App() {
           </div>
 
           <div className="hero-logo" aria-label="Quiz Arena">
-            <div className="hero-logo__mark">
-              <span>Q</span>
-              <span>A</span>
-            </div>
+            <div className="hero-logo__mark"><CompassLogo /></div>
             <div className="hero-logo__wordmark">
               <span>QUIZ</span>
               <strong>ARENA</strong>
@@ -172,7 +170,7 @@ export default function App() {
         <div className="card-fan" aria-hidden="true">
           <div className="mock-card mock-card--one"><span>?</span></div>
           <div className="mock-card mock-card--two"><span>⚡</span></div>
-          <div className="mock-card mock-card--three"><span>QA</span></div>
+          <div className="mock-card mock-card--three"><CompassLogo compact /></div>
           <div className="mock-card mock-card--four"><span>↻</span></div>
           <div className="mock-card mock-card--five"><span>!</span></div>
         </div>
@@ -180,10 +178,10 @@ export default function App() {
 
       <footer className="footer section-shell">
         <div className="brand-mini brand-mini--footer">
-          <span className="brand-mini__mark">QA</span>
-          <span>QUIZ ARENA</span>
+          <span className="brand-mini__mark"><CompassLogo compact /></span>
+          <span className="brand-mini__text"><strong>QUIZ</strong> <em>ARENA</em></span>
         </div>
-        <span>Prototype landing page / v0.1</span>
+        <span>Prototype landing page / v0.2</span>
       </footer>
     </main>
   )
