@@ -1,18 +1,38 @@
+.hero-logo,
+.hero__content,
 .hero-logo__mark {
-  width: clamp(160px, 18vw, 240px);
-  height: auto !important;
-  aspect-ratio: auto !important;
-  display: block;
   overflow: visible !important;
+  clip-path: none !important;
+  mask: none !important;
+  -webkit-mask: none !important;
+  contain: none !important;
+}
+
+.hero-logo__mark {
+  width: clamp(180px, 20vw, 280px) !important;
+  height: auto !important;
+  aspect-ratio: 340 / 325 !important;
+  display: block !important;
+  position: relative;
+}
+
+.compass-logo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 340 / 325;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  overflow: visible !important;
+  clip-path: none !important;
+  mask: none !important;
+  -webkit-mask: none !important;
 }
 
 .hero-logo__mark .compass-logo {
-  display: block;
-  width: 100%;
-  height: auto !important;
-  max-width: none;
-  object-fit: contain;
-  overflow: visible !important;
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: auto;
 }
 
 .brand-mini__mark {
@@ -20,16 +40,14 @@
 }
 
 .brand-mini__mark .compass-logo {
-  display: block;
-  width: 100%;
-  height: auto !important;
-  object-fit: contain;
+  width: 100% !important;
+  height: 100% !important;
+  aspect-ratio: auto;
 }
 
 .mock-card--three .compass-logo {
-  display: block;
   width: 78%;
-  height: auto !important;
-  object-fit: contain;
+  height: auto;
+  aspect-ratio: 340 / 325;
   margin: auto;
 }
