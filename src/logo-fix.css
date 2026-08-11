@@ -1,53 +1,93 @@
-.hero-logo,
+/* Final logo rendering + hero background cleanup. Loaded after base and brand styles. */
+
+.hero__background {
+  background: #070509 !important;
+}
+
+.hero__shade {
+  background: linear-gradient(
+    180deg,
+    rgba(7, 5, 9, 0.22) 0%,
+    rgba(7, 5, 9, 0.04) 28%,
+    rgba(7, 5, 9, 0.10) 64%,
+    #070509 100%
+  ) !important;
+}
+
+.hero,
 .hero__content,
+.hero-logo,
 .hero-logo__mark {
   overflow: visible !important;
+}
+
+.hero-logo__mark {
+  width: clamp(176px, 19vw, 230px) !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   clip-path: none !important;
   mask: none !important;
   -webkit-mask: none !important;
   contain: none !important;
 }
 
-.hero-logo__mark {
-  width: clamp(180px, 20vw, 280px) !important;
-  height: auto !important;
-  aspect-ratio: 340 / 325 !important;
-  display: block !important;
-  position: relative;
+.hero-logo__mark::before {
+  display: none !important;
 }
 
 .compass-logo {
-  display: block;
-  width: 100%;
-  aspect-ratio: 340 / 325;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
   overflow: visible !important;
   clip-path: none !important;
   mask: none !important;
   -webkit-mask: none !important;
-}
-
-.hero-logo__mark .compass-logo {
-  width: 100% !important;
-  height: 100% !important;
-  aspect-ratio: auto;
+  user-select: none;
+  pointer-events: none;
 }
 
 .brand-mini__mark {
+  width: 40px !important;
+  height: auto !important;
+  min-height: 40px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
   overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .brand-mini__mark .compass-logo {
-  width: 100% !important;
-  height: 100% !important;
-  aspect-ratio: auto;
+  width: 40px !important;
+  height: auto !important;
+}
+
+.mock-card--three {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mock-card--three .compass-logo {
-  width: 78%;
-  height: auto;
-  aspect-ratio: 340 / 325;
+  width: 72% !important;
+  height: auto !important;
   margin: auto;
 }
