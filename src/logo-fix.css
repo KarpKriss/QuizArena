@@ -1,0 +1,35 @@
+.hero-logo__mark {
+  width: clamp(160px, 18vw, 240px);
+  height: auto !important;
+  aspect-ratio: auto !important;
+  display: block;
+  overflow: visible !important;
+}
+
+.hero-logo__mark .compass-logo {
+  display: block;
+  width: 100%;
+  height: auto !important;
+  max-width: none;
+  object-fit: contain;
+  overflow: visible !important;
+}
+
+.brand-mini__mark {
+  overflow: visible !important;
+}
+
+.brand-mini__mark .compass-logo {
+  display: block;
+  width: 100%;
+  height: auto !important;
+  object-fit: contain;
+}
+
+.mock-card--three .compass-logo {
+  display: block;
+  width: 78%;
+  height: auto !important;
+  object-fit: contain;
+  margin: auto;
+}
