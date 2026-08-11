@@ -1,18 +1,12 @@
-import part1 from '../assets/compass-data/part1'
-import part2 from '../assets/compass-data/part2'
-import part3 from '../assets/compass-data/part3'
-import part4 from '../assets/compass-data/part4'
-import part5 from '../assets/compass-data/part5'
-
-const compassLogo = `data:image/png;base64,${part1}${part2}${part3}${part4}${part5}`
+import compassLogo from '../assets/quiz-arena-compass.png'
 
 export default function CompassLogo({ compact = false }: { compact?: boolean }) {
   return (
-    <span
+    <img
       className={compact ? 'compass-logo compass-logo--compact' : 'compass-logo'}
-      role="img"
-      aria-label="Quiz Arena — róża wiatrów"
-      style={{ backgroundImage: `url(${compassLogo})` }}
+      src={compassLogo}
+      alt="Quiz Arena — róża wiatrów"
+      draggable={false}
     />
   )
 }
