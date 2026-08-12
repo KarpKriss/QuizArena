@@ -1,5 +1,6 @@
 import SideRays from './components/SideRays/SideRays'
 import CompassLogo from './components/CompassLogo'
+import OrbitParticles from './components/OrbitParticles/OrbitParticles'
 
 const gameModes = [
   { number: '01', name: 'Rosyjska ruletka', text: 'Presja czasu, szybkie decyzje i ryzyko, które może się opłacić.' },
@@ -39,7 +40,10 @@ export default function App() {
 
         <div className="hero__content">
           <div className="hero-logo" aria-label="Quiz Arena">
-            <div className="hero-logo__mark"><CompassLogo /></div>
+            <div className="hero-logo-stage">
+              <OrbitParticles count={38} />
+              <div className="hero-logo__mark"><CompassLogo /></div>
+            </div>
           </div>
         </div>
       </section>
