@@ -1,6 +1,7 @@
 import SideRays from './components/SideRays/SideRays'
 import CompassLogo from './components/CompassLogo'
 import OrbitParticles from './components/OrbitParticles/OrbitParticles'
+import SideNavigator from './components/SideNavigator/SideNavigator'
 
 const gameModes = [
   { number: '01', name: 'Rosyjska ruletka', text: 'Presja czasu, szybkie decyzje i ryzyko, które może się opłacić.' },
@@ -20,6 +21,8 @@ const highlights = [
 export default function App() {
   return (
     <main className="site-shell">
+      <SideNavigator />
+
       <section className="hero" id="start">
         <div className="hero__background" aria-hidden="true">
           <SideRays
