@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/sprawdz-pytanie", "destination": "/index.html" },
+    { "source": "/instrukcja", "destination": "/index.html" }
+  ]
+}
