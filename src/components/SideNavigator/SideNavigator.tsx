@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import OptionWheel from './OptionWheel'
 import './SideNavigator.css'
 
@@ -15,10 +15,12 @@ const sections = [
 export default function SideNavigator() {
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState(0)
-  const [scrolledDown, setScrolledDown] = useState(false)
+  const [revealProgress, setRevealProgress] = useState(0)
   const [manuallyRevealed, setManuallyRevealed] = useState(false)
   const labels = useMemo(() => sections.map((section) => section.label), [])
-  const triggerVisible = scrolledDown || manuallyRevealed
+
+  const effectiveReveal = manuallyRevealed ? 1 : revealProgress
+  const triggerVisible = effectiveReveal > 0.01
 
   const goToSection = (index: number) => {
     const section = sections[index]
@@ -32,9 +34,13 @@ export default function SideNavigator() {
 
   useEffect(() => {
     const updateVisibility = () => {
-      const threshold = Math.max(180, window.innerHeight * 0.42)
-      setScrolledDown(window.scrollY > threshold)
+      const viewport = Math.max(window.innerHeight, 1)
+      const start = Math.max(120, viewport * 0.18)
+      const end = Math.max(start + 180, viewport * 0.55)
+      const progress = Math.min(1, Math.max(0, (window.scrollY - start) / (end - start)))
+      setRevealProgress(progress)
     }
+
     updateVisibility()
     window.addEventListener('scroll', updateVisibility, { passive: true })
     window.addEventListener('resize', updateVisibility)
@@ -78,6 +84,7 @@ export default function SideNavigator() {
       <button
         type="button"
         className={`side-nav-trigger${triggerVisible && !open ? ' side-nav-trigger--visible' : ''}`}
+        style={{ '--nav-reveal': effectiveReveal } as CSSProperties}
         aria-label="Otwórz nawigację"
         aria-expanded={open}
         aria-hidden={!triggerVisible || open}
@@ -106,14 +113,14 @@ export default function SideNavigator() {
             activeColor="#f2c75c"
             side="right"
             fontSize={1.7}
-            spacing={1.72}
+            spacing={1.68}
             curve={0.92}
             tilt={7}
-            blur={0.9}
+            blur={0.8}
             fade={0.18}
             minOpacity={0.12}
-            smoothing={145}
-            inset={54}
+            smoothing={55}
+            inset={58}
             draggable
           />
         </aside>
