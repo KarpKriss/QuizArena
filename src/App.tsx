@@ -2,7 +2,6 @@ import SideRays from './components/SideRays/SideRays'
 import CompassLogo from './components/CompassLogo'
 import OrbitParticles from './components/OrbitParticles/OrbitParticles'
 import SideNavigator from './components/SideNavigator/SideNavigator'
-import './app-pages.css'
 
 const normalizePath = (pathname: string) => {
   const path = pathname.replace(/\/+$/, '')
