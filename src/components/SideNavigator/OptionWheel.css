@@ -1,15 +1,17 @@
 .option-wheel {
   --ow-text-color: #8b8b8b;
   --ow-active-color: #f1c75b;
-  --ow-font-size: 1.45rem;
-  --ow-inset: 28px;
+  --ow-font-size: 1.65rem;
+  --ow-inset: 48px;
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
   cursor: grab;
   user-select: none;
+  -webkit-user-select: none;
   touch-action: none;
+  overscroll-behavior: contain;
   outline: none;
 }
 
@@ -21,15 +23,21 @@
   position: absolute;
   top: 50%;
   left: var(--ow-inset);
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  padding: 14px 16px;
+  margin: -14px -16px;
   white-space: nowrap;
   font-size: var(--ow-font-size);
   line-height: 1;
-  font-weight: 400;
+  font-weight: 430;
   transform-origin: left center;
   cursor: pointer;
   will-change: transform, opacity, filter;
   color: color-mix(in srgb, var(--ow-active-color) calc(var(--ow-p, 0) * 100%), var(--ow-text-color));
-  text-shadow: 0 1px 16px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.72);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .option-wheel--right .option-wheel__item {
@@ -39,5 +47,6 @@
 }
 
 .option-wheel__item--selected {
-  font-weight: 750;
+  font-weight: 800;
+  text-shadow: 0 0 24px rgba(242, 199, 92, 0.26), 0 2px 18px rgba(0, 0, 0, 0.72);
 }
