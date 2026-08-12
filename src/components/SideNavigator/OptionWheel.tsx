@@ -5,6 +5,7 @@ type OptionWheelProps = {
   items: string[]
   defaultSelected?: number
   onChange?: (index: number, item: string) => void
+  onSelect?: (index: number, item: string) => void
   textColor?: string
   activeColor?: string
   side?: 'left' | 'right'
@@ -41,18 +42,19 @@ export default function OptionWheel({
   items,
   defaultSelected = 0,
   onChange,
+  onSelect,
   textColor = '#8b8b8b',
   activeColor = '#f1c75b',
   side = 'right',
-  fontSize = 1.45,
-  spacing = 1.5,
+  fontSize = 1.65,
+  spacing = 1.7,
   curve = 1,
-  tilt = 8,
-  blur = 1.2,
-  fade = 0.2,
-  minOpacity = 0.08,
-  smoothing = 170,
-  inset = 28,
+  tilt = 7,
+  blur = 1,
+  fade = 0.18,
+  minOpacity = 0.1,
+  smoothing = 145,
+  inset = 48,
   loop = false,
   draggable = true,
   className = '',
@@ -78,6 +80,7 @@ export default function OptionWheel({
     draggable,
   })
   const onChangeRef = useRef(onChange)
+  const onSelectRef = useRef(onSelect)
   const selectedRef = useRef(defaultSelected)
   const dragRef = useRef<{ y: number; start: number; id: number } | null>(null)
   const dragMovedRef = useRef(false)
@@ -89,6 +92,7 @@ export default function OptionWheel({
     : 16
 
   onChangeRef.current = onChange
+  onSelectRef.current = onSelect
   cfgRef.current = {
     count: items.length,
     items,
@@ -174,16 +178,21 @@ export default function OptionWheel({
   useEffect(() => {
     const el = rootRef.current
     if (!el) return
+    let wheelTimer: number | undefined
     const onWheel = (event: WheelEvent) => {
       event.preventDefault()
       const cfg = cfgRef.current
       const delta = event.deltaMode === 1 ? event.deltaY * 24 : event.deltaY
       const step = Math.max(-1, Math.min(1, delta / cfg.rowH))
       applyTarget(targetRef.current + step, false)
-      window.setTimeout(() => applyTarget(targetRef.current, true), 120)
+      if (wheelTimer) window.clearTimeout(wheelTimer)
+      wheelTimer = window.setTimeout(() => applyTarget(targetRef.current, true), 130)
     }
     el.addEventListener('wheel', onWheel, { passive: false })
-    return () => el.removeEventListener('wheel', onWheel)
+    return () => {
+      el.removeEventListener('wheel', onWheel)
+      if (wheelTimer) window.clearTimeout(wheelTimer)
+    }
   }, [applyTarget])
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -197,29 +206,45 @@ export default function OptionWheel({
     const drag = dragRef.current
     if (!drag) return
     const dy = event.clientY - drag.y
-    if (!dragMovedRef.current && Math.abs(dy) > 4) {
+    if (!dragMovedRef.current && Math.abs(dy) > 7) {
       dragMovedRef.current = true
       rootRef.current?.setPointerCapture(drag.id)
     }
-    if (dragMovedRef.current) applyTarget(drag.start - dy / cfgRef.current.rowH, false)
+    if (dragMovedRef.current) {
+      event.preventDefault()
+      applyTarget(drag.start - dy / (cfgRef.current.rowH * 0.92), false)
+    }
   }
 
   const handlePointerEnd = () => {
     if (!dragRef.current) return
+    const moved = dragMovedRef.current
     dragRef.current = null
     setIsDragging(false)
-    if (dragMovedRef.current) applyTarget(targetRef.current, true)
+    if (moved) {
+      applyTarget(targetRef.current, true)
+      window.setTimeout(() => {
+        dragMovedRef.current = false
+      }, 0)
+    }
   }
 
   const handleItemClick = (index: number) => {
     if (dragMovedRef.current) return
     applyTarget(index, true)
+    onSelectRef.current?.(index, cfgRef.current.items[index])
   }
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     let delta: number | null = null
     if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') delta = -1
     if (event.key === 'ArrowDown' || event.key === 'ArrowRight') delta = 1
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      const index = selectedRef.current
+      onSelectRef.current?.(index, cfgRef.current.items[index])
+      return
+    }
     if (delta == null) return
     event.preventDefault()
     applyTarget(Math.round(targetRef.current) + delta, true)
