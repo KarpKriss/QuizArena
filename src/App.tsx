@@ -45,6 +45,11 @@ export default function App() {
               <div className="hero-logo__mark"><CompassLogo /></div>
             </div>
           </div>
+
+          <nav className="hero-mobile-actions" aria-label="Szybkie akcje">
+            <a className="hero-action-button" href="#karty">Sprawdź pytanie</a>
+            <a className="hero-action-button" href="#jak-grac">Instrukcja</a>
+          </nav>
         </div>
       </section>
 
