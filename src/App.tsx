@@ -56,11 +56,6 @@ export default function App() {
         </header>
 
         <div className="hero__content">
-          <div className="hero__kicker">
-            <span className="hero__kicker-dot" />
-            Imprezowa gra quizowa
-          </div>
-
           <div className="hero-logo" aria-label="Quiz Arena">
             <div className="hero-logo__mark"><CompassLogo /></div>
             <div className="hero-logo__wordmark">
