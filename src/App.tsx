@@ -37,56 +37,10 @@ export default function App() {
         </div>
         <div className="hero__shade" aria-hidden="true" />
 
-        <header className="topbar-wrap">
-          <nav className="topbar" aria-label="Główna nawigacja">
-            <a className="brand-mini" href="#start" aria-label="Quiz Arena — strona główna">
-              <span className="brand-mini__mark"><CompassLogo compact /></span>
-              <span className="brand-mini__text"><strong>QUIZ</strong> <em>ARENA</em></span>
-            </a>
-
-            <div className="topbar__links">
-              <a href="#o-grze">O grze</a>
-              <a href="#tryby">Tryby</a>
-              <a href="#jak-grac">Jak grać</a>
-              <a href="#karty">Karty</a>
-            </div>
-
-            <a className="topbar__cta" href="#o-grze">Wejdź do Areny</a>
-          </nav>
-        </header>
-
         <div className="hero__content">
           <div className="hero-logo" aria-label="Quiz Arena">
             <div className="hero-logo__mark"><CompassLogo /></div>
-            <div className="hero-logo__wordmark">
-              <span>QUIZ</span>
-              <strong>ARENA</strong>
-            </div>
           </div>
-
-          <p className="hero__claim">Wiedza to dopiero początek.</p>
-          <p className="hero__lead">
-            Tu nie wystarczy znać odpowiedź. Trzeba jeszcze ryzykować, negocjować,
-            współpracować i czasem idealnie wyczuć moment, żeby uderzyć.
-          </p>
-
-          <div className="hero__actions">
-            <a className="button button--primary" href="#o-grze">Poznaj Quiz Arenę</a>
-            <a className="button button--glass" href="#tryby">
-              Zobacz tryby
-              <span aria-hidden="true">↓</span>
-            </a>
-          </div>
-        </div>
-
-        <div className="hero__bottomline">
-          <span>Wiedza</span>
-          <i />
-          <span>Ryzyko</span>
-          <i />
-          <span>Taktyka</span>
-          <i />
-          <span>Chaos</span>
         </div>
       </section>
 
