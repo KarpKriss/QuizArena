@@ -53,7 +53,7 @@ export default function OptionWheel({
   blur = 1,
   fade = 0.18,
   minOpacity = 0.1,
-  smoothing = 145,
+  smoothing = 60,
   inset = 48,
   loop = false,
   draggable = true,
@@ -159,13 +159,15 @@ export default function OptionWheel({
     rafRef.current = requestAnimationFrame(runFrame)
   }, [runFrame])
 
-  const applyTarget = useCallback((value: number, snap: boolean) => {
+  const applyTarget = useCallback((value: number, snap: boolean, immediate = false) => {
     const cfg = cfgRef.current
     if (cfg.count === 0) return
     let v = value
     if (!cfg.loop) v = Math.min(Math.max(v, 0), Math.max(cfg.count - 1, 0))
     if (snap) v = Math.round(v)
     targetRef.current = v
+    if (immediate) posRef.current = v
+
     const idx = ((Math.round(v) % cfg.count) + cfg.count) % cfg.count
     if (idx !== selectedRef.current) {
       selectedRef.current = idx
@@ -186,7 +188,7 @@ export default function OptionWheel({
       const step = Math.max(-1, Math.min(1, delta / cfg.rowH))
       applyTarget(targetRef.current + step, false)
       if (wheelTimer) window.clearTimeout(wheelTimer)
-      wheelTimer = window.setTimeout(() => applyTarget(targetRef.current, true), 130)
+      wheelTimer = window.setTimeout(() => applyTarget(targetRef.current, true), 80)
     }
     el.addEventListener('wheel', onWheel, { passive: false })
     return () => {
@@ -200,33 +202,34 @@ export default function OptionWheel({
     dragRef.current = { y: event.clientY, start: targetRef.current, id: event.pointerId }
     dragMovedRef.current = false
     setIsDragging(true)
+    rootRef.current?.setPointerCapture(event.pointerId)
   }
 
   const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
     const drag = dragRef.current
     if (!drag) return
     const dy = event.clientY - drag.y
-    if (!dragMovedRef.current && Math.abs(dy) > 7) {
-      dragMovedRef.current = true
-      rootRef.current?.setPointerCapture(drag.id)
-    }
+    if (!dragMovedRef.current && Math.abs(dy) > 3) dragMovedRef.current = true
     if (dragMovedRef.current) {
       event.preventDefault()
-      applyTarget(drag.start - dy / (cfgRef.current.rowH * 0.92), false)
+      applyTarget(drag.start - dy / (cfgRef.current.rowH * 0.72), false, true)
     }
   }
 
-  const handlePointerEnd = () => {
+  const handlePointerEnd = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (!dragRef.current) return
     const moved = dragMovedRef.current
+    const pointerId = dragRef.current.id
     dragRef.current = null
     setIsDragging(false)
+    if (rootRef.current?.hasPointerCapture(pointerId)) rootRef.current.releasePointerCapture(pointerId)
     if (moved) {
       applyTarget(targetRef.current, true)
       window.setTimeout(() => {
         dragMovedRef.current = false
       }, 0)
     }
+    event.preventDefault()
   }
 
   const handleItemClick = (index: number) => {
