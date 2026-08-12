@@ -1,0 +1,146 @@
+.hero-logo-stage {
+  position: relative;
+  width: min(74vw, 720px);
+  max-width: 92vw;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.orbit-particles {
+  position: absolute;
+  inset: -5%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.orbit-particle__frame {
+  --orbit: 92%;
+  --squash: 0.85;
+  --counter-squash: 1.176;
+  --tilt: 0deg;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--orbit);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) rotate(var(--tilt)) scaleY(var(--squash));
+  transform-origin: center;
+}
+
+.orbit-particle__rotor {
+  --duration: 36s;
+  --delay: 0s;
+  --phase: 0deg;
+
+  position: absolute;
+  inset: 0;
+  animation: orbit-particle-rotate var(--duration) linear infinite;
+  animation-delay: var(--delay);
+  transform-origin: center;
+}
+
+.orbit-particle__rotor--reverse {
+  animation-direction: reverse;
+}
+
+.orbit-particle {
+  --size: 4px;
+  --opacity: 0.65;
+  --pulse: 5s;
+
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  opacity: var(--opacity);
+  transform: translate(-50%, -50%) scaleY(var(--counter-squash));
+  animation: orbit-particle-pulse var(--pulse) ease-in-out infinite alternate;
+  will-change: opacity, filter;
+}
+
+.orbit-particle--gold {
+  background: radial-gradient(circle at 32% 28%, #fff5bd 0 12%, #f0c653 36%, #c28b22 72%, #6f4308 100%);
+  box-shadow:
+    0 0 7px rgba(247, 220, 134, 0.55),
+    0 0 18px rgba(217, 170, 61, 0.22);
+}
+
+.orbit-particle--white {
+  background: radial-gradient(circle at 34% 30%, #ffffff 0 18%, #f7f2e8 48%, #b9b2a4 100%);
+  box-shadow:
+    0 0 7px rgba(255, 255, 255, 0.42),
+    0 0 15px rgba(255, 244, 204, 0.16);
+}
+
+.orbit-particle--dark {
+  background: radial-gradient(circle at 35% 28%, #4a4237 0 14%, #17130e 55%, #030302 100%);
+  box-shadow: 0 0 6px rgba(217, 170, 61, 0.12);
+}
+
+.hero-logo-stage .hero-logo__mark {
+  position: relative;
+  z-index: 2;
+  width: 78% !important;
+}
+
+@keyframes orbit-particle-rotate {
+  from {
+    transform: rotate(var(--phase));
+  }
+
+  to {
+    transform: rotate(calc(var(--phase) + 360deg));
+  }
+}
+
+@keyframes orbit-particle-pulse {
+  0% {
+    opacity: calc(var(--opacity) * 0.55);
+    filter: brightness(0.88);
+  }
+
+  55% {
+    opacity: var(--opacity);
+    filter: brightness(1.08);
+  }
+
+  100% {
+    opacity: calc(var(--opacity) * 0.72);
+    filter: brightness(0.96);
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-logo-stage {
+    width: min(96vw, 520px);
+  }
+
+  .orbit-particles {
+    inset: -1%;
+  }
+
+  .orbit-particle__frame:nth-child(n + 25) {
+    display: none;
+  }
+
+  .hero-logo-stage .hero-logo__mark {
+    width: 80% !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-particle__rotor,
+  .orbit-particle {
+    animation: none !important;
+  }
+
+  .orbit-particles {
+    opacity: 0.5;
+  }
+}
