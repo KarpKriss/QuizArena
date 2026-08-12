@@ -1,4 +1,4 @@
-import compassLogo from '../assets/quiz-arena-compass-approved.avif'
+import compassLogo from '../assets/quiz-arena-compass-approved.png'
 
 export default function CompassLogo({ compact = false }: { compact?: boolean }) {
   const className = compact ? 'compass-logo compass-logo--compact' : 'compass-logo'
