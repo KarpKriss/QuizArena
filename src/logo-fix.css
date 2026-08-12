@@ -7,9 +7,9 @@
 .hero__shade {
   background: linear-gradient(
     180deg,
-    rgba(7, 5, 9, 0.22) 0%,
-    rgba(7, 5, 9, 0.04) 28%,
-    rgba(7, 5, 9, 0.10) 64%,
+    rgba(7, 5, 9, 0.16) 0%,
+    rgba(7, 5, 9, 0.02) 30%,
+    rgba(7, 5, 9, 0.08) 68%,
     #070509 100%
   ) !important;
 }
@@ -21,8 +21,27 @@
   overflow: visible !important;
 }
 
+.hero__content {
+  width: 100% !important;
+  min-height: 100svh;
+  margin: 0 auto !important;
+  padding: clamp(24px, 4vw, 64px);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.hero-logo {
+  width: 100%;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.52));
+}
+
 .hero-logo__mark {
-  width: clamp(176px, 19vw, 230px) !important;
+  width: clamp(320px, 48vw, 620px) !important;
+  max-height: 76svh;
   height: auto !important;
   aspect-ratio: auto !important;
   display: flex !important;
@@ -51,6 +70,7 @@
   width: 100% !important;
   height: auto !important;
   max-width: 100% !important;
+  max-height: 76svh;
   aspect-ratio: auto !important;
   object-fit: contain !important;
   overflow: visible !important;
@@ -90,4 +110,19 @@
   width: 72% !important;
   height: auto !important;
   margin: auto;
+}
+
+@media (max-width: 760px) {
+  .hero__content {
+    padding: 20px;
+  }
+
+  .hero-logo__mark {
+    width: min(88vw, 430px) !important;
+    max-height: 68svh;
+  }
+
+  .hero-logo__mark .compass-logo {
+    max-height: 68svh;
+  }
 }
