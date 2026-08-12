@@ -19,6 +19,10 @@ const highlights = [
 ]
 
 export default function App() {
+  const openNavigation = () => {
+    window.dispatchEvent(new Event('quiz-arena:open-navigation'))
+  }
+
   return (
     <main className="site-shell">
       <SideNavigator />
@@ -51,7 +55,14 @@ export default function App() {
 
           <nav className="hero-mobile-actions" aria-label="Szybkie akcje">
             <a className="hero-action-button" href="#karty">Sprawdź pytanie</a>
-            <a className="hero-action-button" href="#jak-grac">Instrukcja</a>
+            <button
+              type="button"
+              className="hero-action-button"
+              aria-haspopup="listbox"
+              onClick={openNavigation}
+            >
+              Instrukcja
+            </button>
           </nav>
         </div>
       </section>
