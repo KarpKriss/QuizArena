@@ -1,14 +1,17 @@
 import SideRays from './components/SideRays/SideRays'
 import CompassLogo from './components/CompassLogo'
 import OrbitParticles from './components/OrbitParticles/OrbitParticles'
-import SideNavigator from './components/SideNavigator/SideNavigator'
+import { useEffect, useState } from 'react'
+import SideNavigator, { baseNavigationItems } from './components/SideNavigator/SideNavigator'
 
 const normalizePath = (pathname: string) => {
   const path = pathname.replace(/\/+$/, '')
   return path || '/'
 }
 
-function StartPage() {
+type Navigate = (path: string) => void
+
+function StartPage({ navigate }: { navigate: Navigate }) {
   return (
     <main className="site-shell start-page">
       <section className="hero start-hero" id="start">
@@ -38,8 +41,26 @@ function StartPage() {
           </div>
 
           <nav className="hero-mobile-actions start-actions" aria-label="Główne akcje">
-            <a className="hero-action-button" href="/sprawdz-pytanie">Sprawdź pytanie</a>
-            <a className="hero-action-button" href="/instrukcja">Instrukcja</a>
+            <a
+              className="hero-action-button"
+              href="/sprawdz-pytanie"
+              onClick={(event) => {
+                event.preventDefault()
+                navigate('/sprawdz-pytanie')
+              }}
+            >
+              Sprawdź pytanie
+            </a>
+            <a
+              className="hero-action-button"
+              href="/instrukcja"
+              onClick={(event) => {
+                event.preventDefault()
+                navigate('/instrukcja')
+              }}
+            >
+              Instrukcja
+            </a>
           </nav>
         </div>
       </section>
@@ -47,10 +68,10 @@ function StartPage() {
   )
 }
 
-function QuestionsPage() {
+function QuestionsPage({ navigate }: { navigate: Navigate }) {
   return (
     <main className="site-shell utility-page">
-      <SideNavigator currentPath="/sprawdz-pytanie" />
+      <SideNavigator currentPath="/sprawdz-pytanie" items={baseNavigationItems} onNavigate={navigate} />
       <div className="utility-page__backdrop" aria-hidden="true" />
 
       <section className="utility-page__content">
@@ -81,10 +102,10 @@ function QuestionsPage() {
   )
 }
 
-function InstructionsPage() {
+function InstructionsPage({ navigate }: { navigate: Navigate }) {
   return (
     <main className="site-shell utility-page">
-      <SideNavigator currentPath="/instrukcja" />
+      <SideNavigator currentPath="/instrukcja" items={baseNavigationItems} onNavigate={navigate} />
       <div className="utility-page__backdrop" aria-hidden="true" />
 
       <section className="utility-page__content utility-page__content--instructions">
@@ -100,9 +121,22 @@ function InstructionsPage() {
 }
 
 export default function App() {
-  const path = normalizePath(window.location.pathname)
+  const [path, setPath] = useState(() => normalizePath(window.location.pathname))
 
-  if (path === '/sprawdz-pytanie') return <QuestionsPage />
-  if (path === '/instrukcja') return <InstructionsPage />
-  return <StartPage />
+  useEffect(() => {
+    const syncPath = () => setPath(normalizePath(window.location.pathname))
+    window.addEventListener('popstate', syncPath)
+    return () => window.removeEventListener('popstate', syncPath)
+  }, [])
+
+  const navigate: Navigate = (nextPath) => {
+    const normalizedPath = normalizePath(nextPath)
+    if (normalizedPath === path) return
+    window.history.pushState({}, '', normalizedPath)
+    setPath(normalizedPath)
+  }
+
+  if (path === '/sprawdz-pytanie') return <QuestionsPage navigate={navigate} />
+  if (path === '/instrukcja') return <InstructionsPage navigate={navigate} />
+  return <StartPage navigate={navigate} />
 }

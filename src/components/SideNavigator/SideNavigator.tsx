@@ -2,7 +2,12 @@ import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import OptionWheel from './OptionWheel'
 import './SideNavigator.css'
 
-const routes = [
+export type NavigationItem = {
+  label: string
+  path: string
+}
+
+export const baseNavigationItems: NavigationItem[] = [
   { label: 'Start', path: '/' },
   { label: 'Sprawdź pytanie', path: '/sprawdz-pytanie' },
   { label: 'Instrukcja', path: '/instrukcja' },
@@ -10,20 +15,22 @@ const routes = [
 
 type SideNavigatorProps = {
   currentPath: string
+  items?: NavigationItem[]
+  onNavigate: (path: string) => void
 }
 
-export default function SideNavigator({ currentPath }: SideNavigatorProps) {
-  const currentIndex = Math.max(0, routes.findIndex((route) => route.path === currentPath))
+export default function SideNavigator({ currentPath, items = baseNavigationItems, onNavigate }: SideNavigatorProps) {
+  const currentIndex = Math.max(0, items.findIndex((item) => item.path === currentPath))
   const [open, setOpen] = useState(false)
   const [selected, setSelected] = useState(currentIndex)
-  const labels = useMemo(() => routes.map((route) => route.label), [])
+  const labels = useMemo(() => items.map((item) => item.label), [items])
 
   const goToRoute = (index: number) => {
-    const route = routes[index]
-    if (!route) return
+    const item = items[index]
+    if (!item) return
     setSelected(index)
     setOpen(false)
-    window.setTimeout(() => window.location.assign(route.path), 40)
+    onNavigate(item.path)
   }
 
   useEffect(() => {
@@ -90,7 +97,7 @@ export default function SideNavigator({ currentPath }: SideNavigatorProps) {
             inset={58}
             draggable
           />
-          <span className="side-nav-current" aria-live="polite">{routes[selected]?.label}</span>
+          <span className="side-nav-current" aria-live="polite">{items[selected]?.label}</span>
         </aside>
       </div>
     </>
