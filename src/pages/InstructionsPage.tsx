@@ -32,10 +32,19 @@ const contentStart = instructionSource.indexOf('1. CZYM JEST QUIZ ARENA?')
 const contentEnd = instructionSource.indexOf('11. RESPONSIVE / MOBILE')
 const approvedRules = instructionSource.slice(contentStart, contentEnd).trim()
 
-const chapters: Chapter[] = approvedRules
+const chapterParts = approvedRules
   .split(/\r?\n-{20,}\r?\n/)
   .map((part) => part.trim())
-  .filter((part) => /^\d+\. /.test(part))
+  .reduce<string[]>((sections, part) => {
+    if (/^([1-9]|10)\. [A-ZĄĆĘŁŃÓŚŹŻ]/.test(part)) {
+      sections.push(part)
+    } else if (sections.length > 0) {
+      sections[sections.length - 1] += `\n\n${part}`
+    }
+    return sections
+  }, [])
+
+const chapters: Chapter[] = chapterParts
   .map((part, index) => {
     const [heading, ...body] = part.split('\n')
     const [number, ...title] = heading.split('. ')

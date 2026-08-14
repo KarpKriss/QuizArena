@@ -228,8 +228,8 @@ export default function OptionWheel({
       window.setTimeout(() => {
         dragMovedRef.current = false
       }, 0)
+      event.preventDefault()
     }
-    event.preventDefault()
   }
 
   const handleItemClick = (index: number) => {

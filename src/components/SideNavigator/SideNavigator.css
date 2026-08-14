@@ -3,7 +3,7 @@
   display: none;
 }
 
-@media (max-width: 760px) {
+@media (min-width: 0) {
   .side-nav-trigger {
     position: fixed;
     right: max(24px, env(safe-area-inset-right));
