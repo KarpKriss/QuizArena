@@ -82,7 +82,7 @@ export default function OptionWheel({
   const onChangeRef = useRef(onChange)
   const onSelectRef = useRef(onSelect)
   const selectedRef = useRef(defaultSelected)
-  const dragRef = useRef<{ y: number; start: number; id: number } | null>(null)
+  const dragRef = useRef<{ y: number; start: number; id: number; itemIndex: number | null } | null>(null)
   const dragMovedRef = useRef(false)
   const [selectedIndex, setSelectedIndex] = useState(defaultSelected)
   const [isDragging, setIsDragging] = useState(false)
@@ -199,7 +199,14 @@ export default function OptionWheel({
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (!cfgRef.current.draggable) return
-    dragRef.current = { y: event.clientY, start: targetRef.current, id: event.pointerId }
+    const option = (event.target as HTMLElement).closest<HTMLElement>('[role="option"]')
+    const itemIndex = option ? itemRefs.current.indexOf(option as HTMLDivElement) : -1
+    dragRef.current = {
+      y: event.clientY,
+      start: targetRef.current,
+      id: event.pointerId,
+      itemIndex: itemIndex >= 0 ? itemIndex : null,
+    }
     dragMovedRef.current = false
     setIsDragging(true)
     rootRef.current?.setPointerCapture(event.pointerId)
@@ -218,8 +225,8 @@ export default function OptionWheel({
 
   const handlePointerEnd = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (!dragRef.current) return
+    const { id: pointerId, itemIndex } = dragRef.current
     const moved = dragMovedRef.current
-    const pointerId = dragRef.current.id
     dragRef.current = null
     setIsDragging(false)
     if (rootRef.current?.hasPointerCapture(pointerId)) rootRef.current.releasePointerCapture(pointerId)
@@ -228,6 +235,9 @@ export default function OptionWheel({
       window.setTimeout(() => {
         dragMovedRef.current = false
       }, 0)
+      event.preventDefault()
+    } else if (event.type !== 'pointercancel' && itemIndex != null) {
+      handleItemClick(itemIndex)
       event.preventDefault()
     }
   }
