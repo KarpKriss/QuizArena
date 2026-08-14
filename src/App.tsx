@@ -3,6 +3,7 @@ import CompassLogo from './components/CompassLogo'
 import OrbitParticles from './components/OrbitParticles/OrbitParticles'
 import { useEffect, useState } from 'react'
 import SideNavigator, { baseNavigationItems } from './components/SideNavigator/SideNavigator'
+import InstructionsPage from './pages/InstructionsPage'
 
 const normalizePath = (pathname: string) => {
   const path = pathname.replace(/\/+$/, '')
@@ -97,24 +98,6 @@ function QuestionsPage({ navigate }: { navigate: Navigate }) {
           <span id="question-number-hint">Na razie przygotowujemy sam ekran i wpisywanie numeru.</span>
           <button type="submit">Sprawdź</button>
         </form>
-      </section>
-    </main>
-  )
-}
-
-function InstructionsPage({ navigate }: { navigate: Navigate }) {
-  return (
-    <main className="site-shell utility-page">
-      <SideNavigator currentPath="/instrukcja" items={baseNavigationItems} onNavigate={navigate} />
-      <div className="utility-page__backdrop" aria-hidden="true" />
-
-      <section className="utility-page__content utility-page__content--instructions">
-        <div className="utility-page__brand"><CompassLogo compact /></div>
-        <p className="utility-page__eyebrow">QUIZ ARENA</p>
-        <h1>Instrukcja</h1>
-        <p className="utility-page__lead">
-          To jest osobna przestrzeń na instrukcję gry. Na razie zostawiamy tutaj bazowy ekran — w następnej iteracji dodamy właściwe sekcje instrukcji do koła nawigacji.
-        </p>
       </section>
     </main>
   )

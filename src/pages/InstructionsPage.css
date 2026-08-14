@@ -1,0 +1,33 @@
+.instructions-page { position: relative; min-height: 100svh; overflow-x: clip; color: #f3efe7; background: #070509; }
+.instructions-page__backdrop { position: fixed; inset: 0; pointer-events: none; background: radial-gradient(circle at 80% 8%, rgba(217,170,61,.1), transparent 28rem), linear-gradient(180deg,#09070b,#050405 56%); }
+.instructions-hero, .instructions-content { position: relative; z-index: 1; width: min(900px, calc(100% - 48px)); margin: 0 auto; }
+.instructions-hero { min-height: min(86svh, 760px); padding: max(48px, calc(env(safe-area-inset-top) + 34px)) 0 96px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+.instructions-hero__mark { width: 62px; margin-bottom: 26px; }
+.instructions-hero__mark .compass-logo { width: 100% !important; }
+.instructions-hero > p, .instruction-section__intro > p { margin: 0; color: #d9b95c; font-size: .68rem; font-weight: 850; letter-spacing: .18em; text-transform: uppercase; }
+.instructions-hero > span { margin-top: 8px; color: #aaa5b6; font-size: .92rem; }
+.instructions-hero h1 { margin: 28px 0 0; font-size: clamp(4.2rem, 14vw, 9rem); line-height: .82; letter-spacing: -.075em; text-transform: uppercase; }
+.instructions-hero__meta { display: flex; gap: 16px; margin-top: 28px; color: #d7d0c4; font-size: .82rem; }
+.instructions-hero__meta span + span { border-left: 1px solid rgba(217,170,61,.35); padding-left: 16px; }
+.instructions-hero small { margin-top: 20px; color: #938c98; font-size: .8rem; }
+.instructions-hero a { margin-top: 42px; display: inline-flex; gap: 12px; align-items: center; color: #dfc272; font-size: .68rem; font-weight: 800; letter-spacing: .13em; text-decoration: none; text-transform: uppercase; }
+.instructions-hero a b { font-size: 1.3rem; }
+.instruction-section { scroll-margin-top: 24px; padding: clamp(76px, 12vw, 148px) 0; border-top: 1px solid rgba(217,170,61,.13); }
+.instruction-section:nth-child(even) { background: linear-gradient(90deg, transparent, rgba(217,170,61,.025), transparent); }
+.instruction-section__intro { max-width: 760px; }
+.instruction-section__number { display: block; margin-bottom: 16px; color: rgba(217,170,61,.56); font-size: .72rem; font-weight: 800; letter-spacing: .16em; }
+.instruction-section h2 { margin: 14px 0 0; max-width: 820px; font-size: clamp(2.6rem, 7vw, 5.4rem); line-height: .92; letter-spacing: -.065em; text-transform: uppercase; }
+.instruction-section__body { max-width: 760px; margin-top: 42px; }
+.instruction-section__body p { margin: 0 0 21px; color: #c2bbc5; white-space: pre-line; font-size: clamp(.98rem, 1.5vw, 1.08rem); line-height: 1.75; }
+.instruction-section__body h3 { margin: 44px 0 15px; color: #f1d688; font-size: .76rem; font-weight: 850; letter-spacing: .15em; line-height: 1.4; }
+.instruction-section__body ul { margin: 0 0 24px; padding-left: 1.2rem; color: #c2bbc5; line-height: 1.75; }
+.instruction-callout { margin: 30px 0; padding: 22px 24px; border-left: 2px solid #d9aa3d; background: linear-gradient(90deg, rgba(217,170,61,.1), rgba(217,170,61,.025)); }
+.instruction-callout span { color: #f1d688; font-size: .68rem; font-weight: 850; letter-spacing: .16em; }
+.instruction-callout p { margin: 10px 0 0; }
+.coin-exchange { display: grid; gap: 14px; padding: 26px; margin: 0 0 34px; border: 1px solid rgba(217,170,61,.22); background: rgba(0,0,0,.22); }
+.coin-exchange div { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
+.coin-exchange i { margin: 0 9px; color: #d9aa3d; font-style: normal; font-size: 1.3rem; }.coin-exchange p { margin: 8px 0 0; color: #f1d688; font-weight: 700; }
+.coin { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; color: #070509; font-size: .76rem; }.coin--bronze { background: #b47740; }.coin--silver { background: #d0d1d2; }.coin--gold { background: #e7bd4d; }
+.timing-flow { display: grid; gap: 0; margin: 0 0 44px; padding: 0; list-style: none; border-top: 1px solid rgba(217,170,61,.2); }.timing-flow li { min-height: 48px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid rgba(217,170,61,.14); color: #d4ced6; }.timing-flow b { width: 28px; color: #d9aa3d; font-size: .68rem; letter-spacing: .08em; }
+@media (max-width: 760px) { .instructions-hero, .instructions-content { width: calc(100% - 40px); }.instructions-hero { min-height: 76svh; padding-bottom: 70px; }.instructions-hero h1 { font-size: clamp(4rem, 19vw, 6rem); }.instruction-section { padding: 76px 0; }.instruction-section__body { margin-top: 32px; }.instruction-callout { padding: 18px; }.coin-exchange { padding: 20px; }.timing-flow li { min-height: 46px; font-size: .92rem; } }
+@media (prefers-reduced-motion: reduce) { .instructions-hero a { scroll-behavior: auto; } }

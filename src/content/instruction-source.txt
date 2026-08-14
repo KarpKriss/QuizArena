@@ -1,0 +1,1468 @@
+Kontynuujemy development Quiz Arena.
+
+Twoim zadaniem jest teraz zbudowanie kompletnej podstrony:
+
+/instrukcja
+
+UWAGA:
+Treść instrukcji podana niżej jest treścią zatwierdzoną dla obecnej wersji gry.
+Nie poprawiaj jej merytorycznie, nie zmieniaj zasad, nagród, timingów, nazw kart ani ekonomii gry bez wyraźnego polecenia.
+
+Możesz poprawić jedynie:
+- typografię,
+- układ,
+- podział wizualny,
+- semantyczną strukturę HTML,
+- mikrocopy nawigacyjne niezwiązane z zasadami.
+
+Nie skracaj instrukcji.
+Nie twórz własnych interpretacji zasad.
+Nie zastępuj konkretnych zasad ogólnikami.
+
+==================================================
+1. CEL STRONY
+==================================================
+
+Podstrona `/instrukcja` ma być pełną cyfrową instrukcją Quiz Arena.
+
+Nie chcę wyglądu:
+- PDF wrzuconego na stronę,
+- Worda w przeglądarce,
+- zwykłego bloga z jednym wielkim blokiem tekstu.
+
+Ma to wyglądać jak profesjonalna, premium instrukcja gry planszowej zaprojektowana specjalnie pod stronę Quiz Arena.
+
+Klimat:
+- premium,
+- cinematic,
+- bardzo ciemny,
+- prawie czarne tło,
+- biel,
+- złote akcenty,
+- dużo oddechu,
+- czytelne sekcje,
+- mobile-first.
+
+Zachowaj istniejącą identyfikację Quiz Arena.
+
+NIE zmieniaj zaakceptowanego assetu logo.
+
+==================================================
+2. OGÓLNY LAYOUT
+==================================================
+
+Strona może być scrollowalna.
+
+Nie buduj instrukcji jako jednego wielkiego kontenera.
+
+Każdy główny rozdział powinien być wyraźną sekcją strony.
+
+Preferowany rytm:
+
+mały numer rozdziału
+np.
+01
+
+mały złoty label:
+CZYM JEST QUIZ ARENA?
+
+duży nagłówek
+
+treść
+
+następna sekcja
+
+Sekcje powinny być oddzielane:
+- dużym vertical spacing,
+- subtelnymi liniami,
+- delikatną zmianą tonu tła,
+- ewentualnie bardzo subtelnym złotym glow.
+
+Nie rób każdej sekcji jako osobnej klasycznej "card".
+To ma wyglądać bardziej editorial / premium niż dashboard.
+
+==================================================
+3. TYPOGRAFIA
+==================================================
+
+Najważniejsze zasady:
+
+H1:
+INSTRUKCJA
+
+bardzo duży, mocny nagłówek.
+
+Na początku strony umieść:
+
+QUIZ ARENA
+Imprezowa gra quizowa dla 4–8 osób
+
+INSTRUKCJA
+
+Wersja 1.0
+Sierpień 2026
+
+oraz krótką uwagę:
+Przeczytaj przed pierwszą rozgrywką.
+
+Nie kopiuj layoutu strony startowej 1:1.
+
+Podstrona instrukcji ma mieć własny charakter, ale nadal być jednoznacznie częścią Quiz Arena.
+
+Body text:
+- czytelny,
+- nie za mały,
+- przyjazny na telefonie,
+- max-width tekstu ograniczony,
+- odpowiedni line-height.
+
+Na mobile:
+nie może wyglądać jak ściana tekstu.
+
+==================================================
+4. NAWIGACJA OPTIONWHEEL
+==================================================
+
+Na stronie `/instrukcja` boczne kółko nawigacyjne ma być widoczne zgodnie z obecnym systemem UI.
+
+Po otwarciu:
+- cała reszta ekranu mocno się ściemnia,
+- OptionWheel jest głównym elementem,
+- drag musi działać natychmiastowo pod palcem,
+- snapping dopiero po puszczeniu.
+
+Pierwsze trzy pozycje MUSZĄ zawsze pozostać bazową nawigacją aplikacji:
+
+Start
+Sprawdź pytanie
+Instrukcja
+
+Prowadzą do:
+
+Start -> /
+Sprawdź pytanie -> /sprawdz-pytanie
+Instrukcja -> /instrukcja
+
+POD NIMI dodaj pozycje charakterystyczne dla instrukcji:
+
+Czym jest Quiz Arena?
+Zawartość pudełka
+Przygotowanie gry
+Monety i wymiana
+Przebieg tury
+Tryby rozgrywki
+Karty specjalne
+Strona internetowa
+Zasady ogólne
+Skrót tury
+
+Kliknięcie pozycji instrukcji ma robić smooth scroll do odpowiedniej sekcji.
+
+Nie twórz osobnych URL dla każdego rozdziału.
+To nadal jest jedna strona `/instrukcja`.
+
+Architektura SideNavigator powinna umożliwiać przekazanie:
+- bazowych pozycji,
+- dodatkowych pozycji zależnych od aktualnej strony.
+
+Nie hardcoduj wszystkich pozycji instrukcji bezpośrednio wewnątrz bazowego komponentu nawigacji.
+
+==================================================
+5. HERO INSTRUKCJI
+==================================================
+
+Pierwszy ekran `/instrukcja` powinien być spokojniejszy niż Start.
+
+Proponowany układ:
+
+mały znak/logo Quiz Arena
+
+QUIZ ARENA
+
+INSTRUKCJA
+
+Pełne zasady gry
+4–8 graczy
+
+Wersja 1.0
+Sierpień 2026
+
+niżej subtelny element:
+PRZEWIŃ, ABY CZYTAĆ
+↓
+
+
+Nie zajmuj całego 100svh samym hero.
+Użytkownik ma od razu widzieć, że poniżej zaczyna się treść.
+
+==================================================
+6. ELEMENTY SPECJALNE W TREŚCI
+==================================================
+
+W instrukcji występuje wiele:
+- przykładów,
+- kolejności zdarzeń,
+- kursów monet,
+- nagród,
+- wyjątków,
+- timingów.
+
+Nie prezentuj ich wszystkich jako zwykłych akapitów.
+
+Stwórz reusable komponenty np.:
+
+<RuleCallout />
+<ExampleBlock />
+<RewardBlock />
+<TimingFlow />
+<CoinExchange />
+<RuleList />
+
+ale nie przesadzaj z liczbą abstrakcji.
+
+Przykłady powinny mieć wizualny label:
+PRZYKŁAD
+
+Ważne wyjątki:
+WAŻNE
+
+Timing:
+TIMING
+
+Nagrody:
+NAGRODA / NAGRODY
+
+Kary:
+KARA
+
+Nie używaj przypadkowych emoji.
+
+==================================================
+7. MONETY
+==================================================
+
+Sekcja systemu monet ma być bardzo czytelna wizualnie.
+
+Pokaż:
+
+3 brązowe
+=
+1 srebrna
+
+3 srebrne
+=
+1 złota
+
+oraz:
+
+1 złota = 3 srebrne = 9 brązowych
+
+Może to być osobny wizualny komponent.
+
+Nie zmieniaj jednak samej zasady.
+
+==================================================
+8. TRYBY GRY
+==================================================
+
+Rozdział "Tryby rozgrywki" powinien wizualnie wyróżniać:
+
+TARGET
+RULETKA
+GLADIATORZY
+DUO
+LICYTACJA
+SOJUSZ
+
+Każdy tryb jako wyraźna podsekcja.
+
+Nie buduj slidera ani karuzeli.
+Użytkownik ma móc normalnie scrollować instrukcję.
+
+Każdy tryb:
+- nazwa,
+- krótkie wprowadzenie,
+- przebieg,
+- zasady szczególne,
+- zakończenie,
+- nagrody / kary.
+
+==================================================
+9. KARTY SPECJALNE
+==================================================
+
+Rozdział kart specjalnych ma zawierać:
+
+Hazardzista
+Rewers
+Błazen
+Pomidor
+Leń
+
+oraz wcześniej:
+- zasady ogólne,
+- timing kart specjalnych.
+
+Sekcję timingu przedstaw bardzo czytelnie jako pionową sekwencję:
+
+01 Wymiana monet
+02 Sprawdzenie zwycięstwa
+03 Hazardzista / Leń
+04 Rzut kostką
+05 Ewentualne 6
+06 Dobranie pytania
+07 Błazen
+08 Odczytanie pytania
+09 Rozgrywka
+10 Pomidor
+11 Ustalenie wyniku
+12 Rewers
+13 Rozliczenie monet
+
+Na mobile ta sekwencja musi pozostać czytelna.
+
+==================================================
+10. TREŚĆ INSTRUKCJI
+==================================================
+
+Użyj dokładnie poniższej treści jako merytorycznej podstawy strony.
+
+--------------------------------------------------
+1. CZYM JEST QUIZ ARENA?
+--------------------------------------------------
+
+Quiz Arena to imprezowa gra quizowa dla 4–8 graczy, w której wiedza jest tylko jednym z elementów prowadzących do zwycięstwa. Gracze rywalizują w różnych typach rozgrywek, podejmują ryzyko, tworzą chwilowe sojusze, blefują, obstawiają, korzystają z kart specjalnych i zdobywają monety.
+
+CEL GRY
+
+Wygrywa pierwszy gracz, który fizycznie posiada co najmniej 5 złotych monet. Równowartość niższych nominałów nie oznacza jeszcze zwycięstwa – liczy się faktyczna liczba złotych monet po obowiązkowej wymianie na początku własnej kolejki.
+
+PRZYKŁAD
+
+4 złote + 3 srebrne to jeszcze nie wygrana; dopiero po wymianie 3 srebrnych na 1 złotą gracz posiada 5 złotych i wygrywa.
+
+Gra wykorzystuje trzy rodzaje monet: brązowe, srebrne i złote. Podstawową rozgrywkę tworzy pięć trybów: Ruletka, Gladiatorzy, Duo, Licytacja, Sojusz, a dodatkowo w taliach znajdują się pytania specjalnego typu Target oraz talia kart specjalnych.
+
+--------------------------------------------------
+2. ZAWARTOŚĆ PUDEŁKA
+--------------------------------------------------
+
+KARTY PYTAŃ
+
+W pudełku znajdują się pięć osobnych talii pytań, odpowiadających pięciu rodzajom rozgrywki:
+
+Ruletka
+Gladiatorzy
+Duo
+Licytacja
+Sojusz
+
+Karty Target są losowo wmieszane we wszystkie pięć talii.
+
+Standardowa karta pytania zawiera kategorię, poziom trudności i treść pytania; odpowiedzi nie są nadrukowane na kartach.
+
+Poprawność odpowiedzi ustalają uczestnicy oraz strona internetowa Quiz Arena.
+
+Poziom trudności jest informacyjny i nie wpływa na wysokość nagrody, ale ma znaczenie strategiczne, szczególnie w Licytacji.
+
+KARTY SPECJALNE – 50 SZTUK
+
+14 × Pomidor
+11 × Błazen
+10 × Hazardzista
+8 × Rewers
+7 × Leń
+
+Łącznie 50 kart specjalnych.
+
+MONETY – 100 SZTUK
+
+40 brązowych
+25 srebrnych
+35 złotych
+
+POZOSTAŁE ELEMENTY
+
+2 kostki D6
+
+Tabliczki do zapisywania odpowiedzi – po jednej dla każdego gracza
+
+Przybory do pisania i ścierania odpowiedzi
+
+Instrukcja gry
+
+--------------------------------------------------
+3. PRZYGOTOWANIE GRY
+--------------------------------------------------
+
+3.1. PRZYGOTOWANIE TALII
+
+Pięć talii podstawowych trybów potasuj i ułóż obok siebie w losowej kolejności.
+
+Ich pozycje od lewej do prawej odpowiadają wynikom kostki:
+
+1 – 2 – 3 – 4 – 5
+
+Nie ma stałego przypisania numeru kostki do konkretnego trybu – w każdej partii kolejność może wyglądać inaczej.
+
+Na pozycji 6 zawsze znajduje się talia kart specjalnych.
+
+3.2. BANK MONET
+
+Wszystkie monety tworzą wspólny bank dostępny dla wszystkich graczy.
+
+3.3. STARTOWE ZASOBY GRACZY
+
+Każdy gracz otrzymuje na początku:
+
+1 srebrną monetę
+
+własną tabliczkę i przybór do pisania
+
+Karty specjalne znajdujące się na ręce gracza powinny być ukryte przed pozostałymi uczestnikami.
+
+3.4. KTO ZACZYNA?
+
+Grę rozpoczyna osoba, która przyniosła Quiz Arenę.
+
+Po zakończeniu jej kolejki aktywnym graczem zostaje kolejna osoba zgodnie z ruchem wskazówek zegara, i ten kierunek obowiązuje przez całą partię.
+
+--------------------------------------------------
+4. SYSTEM MONET I WYMIANA
+--------------------------------------------------
+
+4.1. KURS WYMIANY
+
+3 brązowe = 1 srebrna
+
+3 srebrne = 1 złota
+
+Czyli:
+
+1 złota = 3 srebrne = 9 brązowych.
+
+4.2. OBOWIĄZKOWA WYMIANA NA POCZĄTKU KOLEJKI
+
+Na początku swojej kolejki gracz obowiązkowo dokonuje wszystkich możliwych wymian monet na wyższe nominały.
+
+Oznacza to, że musi zamienić brązowe na srebrne oraz srebrne na złote wszędzie tam, gdzie tylko jest to możliwe.
+
+PRZYKŁAD
+
+Gracz posiada 7 brązowych i 2 srebrne.
+
+Najpierw wymienia 6 brązowych na 2 srebrne.
+
+Ma wtedy razem:
+4 srebrne
+1 brązową.
+
+Następnie wymienia 3 srebrne na 1 złotą.
+
+Kończy z:
+
+1 brązową
+1 srebrną
+1 złotą.
+
+4.3. AWARYJNA WYMIANA
+
+Jeżeli bankowi zabraknie danego nominału potrzebnego do wypłaty, można dokonać dodatkowej wymiany monet, aby przywrócić płynność banku.
+
+Jeżeli gracz ma coś zapłacić, ale nie posiada odpowiedniego niższego nominału, może rozmienić monetę wyższego nominału zgodnie z kursem 3:1.
+
+Gracz nigdy nie może mieć ujemnego stanu monet.
+
+Jeśli nie jest w stanie w pełni pokryć wymaganej płatności, niepokryta część po prostu przepada.
+
+--------------------------------------------------
+5. PRZEBIEG TURY
+--------------------------------------------------
+
+Standardowa kolejność początku własnej tury wygląda następująco:
+
+1. Obowiązkowa wymiana monet – zamień wszystkie możliwe monety na wyższe nominały.
+
+2. Sprawdzenie warunku zwycięstwa – jeśli po wymianie masz fizycznie 5 złotych monet, wygrywasz.
+
+3. Opcjonalne zagranie kart specjalnych – możesz zagrać Hazardzistę i/lub Lenia, obie karty w tym samym oknie czasowym, przed rzutem kostką.
+
+4. Rzut kostką D6 – aktywny gracz rzuca jedną kością.
+
+5. Dobranie karty – wynik 1–5 wskazuje talię trybu, z której dobierasz wierzchnią kartę; wynik 6 oznacza kartę specjalną.
+
+6. Rozegranie trybu – jeśli karta to Target, rozgrywasz Target zamiast klasycznego trybu; w przeciwnym razie rozgrywasz tryb odpowiadający dobranej talii.
+
+7. Rozliczenie rundy – po ogłoszeniu wyniku pojawia się krótkie okno na zagranie Rewersu, a następnie następuje rozliczenie monet.
+
+8. Przekazanie kolejki – kolej przechodzi do kolejnego gracza zgodnie z ruchem wskazówek zegara.
+
+5.1. WYRZUCENIE 6 I KARTY SPECJALNE
+
+Wynik 6 oznacza dobranie karty specjalnej.
+
+Jeśli gracz ma mniej niż 3 karty specjalne na ręce:
+
+- dobiera jedną kartę specjalną,
+- zachowuje ją na ręce,
+- ponownie rzuca kostką.
+
+Wyrzucenie 6 nie kończy kolejki – gracz rzuca ponownie, aż wypadnie wynik 1–5.
+
+Jeśli gracz posiada już 3 karty specjalne i wyrzuci 6:
+
+- nie dobiera czwartej karty,
+- otrzymuje 1 srebrną monetę,
+- rzuca kostką ponownie.
+
+Kart specjalnych nie można dobrowolnie odrzucić tylko po to, żeby zwolnić miejsce na ręce – kartę należy legalnie zagrać.
+
+Karta specjalna dobrana po wyrzuceniu 6 może zostać użyta jeszcze podczas tej samej kolejki, jeżeli jej normalne okno zagrania na to pozwala.
+
+Wyjątkiem jest Hazardzista, który może być zagrany dopiero na początku kolejnej własnej tury.
+
+--------------------------------------------------
+6. TRYBY ROZGRYWKI
+--------------------------------------------------
+
+6.1. TARGET
+
+Target jest specjalnym typem pytania, który zastępuje zasady trybu, z którego został dobrany.
+
+Jeśli dobrana karta jest Targetem, rozgrywasz Target, niezależnie od tego, z której talii ją wylosowano.
+
+PRZEBIEG TARGETU
+
+W Target biorą udział wszyscy gracze, włącznie z czytającym.
+
+Czytający odczytuje pytanie liczbowe, a każdy ma 30 sekund na zapisanie swojej odpowiedzi na tabliczce.
+
+Odpowiedzi pozostają ukryte do końca czasu, po czym wszyscy odsłaniają je jednocześnie.
+
+NAGRODY
+
+Dokładne trafienie:
+1 srebrna moneta.
+
+Odpowiedź w tolerancji podanej na karcie:
+1 brązowa moneta.
+
+Odpowiedź poza tolerancją:
+0 monet.
+
+Target nie przewiduje standardowych kar.
+
+KARTY SPECJALNE W TARGET
+
+W Target nie działają Pomidor ani Błazen.
+
+--------------------------------
+6.2. RULETKA
+--------------------------------
+
+Ruletka jest rozgrywką eliminacyjną.
+
+PRZEBIEG
+
+Pierwszy odpowiada gracz, który dobrał kartę – czyta pytanie i ma 10 sekund na podanie pierwszej odpowiedzi.
+
+Następnie kolej przechodzi zgodnie z ruchem wskazówek zegara.
+
+Każdy kolejny gracz ma 5 sekund na podanie jednej odpowiedzi.
+
+Odpowiedzi nie mogą się powtarzać.
+
+Odpowiedź, która już padła, nie może zostać użyta ponownie.
+
+Jeśli kolejka zatoczy pełne koło, gracze odpowiadają ponownie w tej samej kolejności.
+
+PASS I ODPADNIĘCIE
+
+Jeśli gracz nie zna odpowiedzi, może natychmiast powiedzieć „Pass”, nie czekając do końca czasu.
+
+Gracz odpada z Ruletki, gdy:
+
+- powie „Pass”,
+- przekroczy limit czasu,
+- poda powtórzoną odpowiedź,
+- poda odpowiedź uznaną za błędną.
+
+Odpadnięty gracz odkłada swoją tabliczkę, a pozostali kontynuują rozgrywkę, omijając wyeliminowane osoby.
+
+KONIEC RUNDY I NAGRODA
+
+Runda kończy się natychmiast, kiedy pozostaje tylko jedna uniesiona tabliczka.
+
+Jej właściciel wygrywa Ruletkę.
+
+Zwycięzca otrzymuje 1 srebrną monetę.
+
+Poziom trudności karty nie zmienia nagrody.
+
+--------------------------------
+6.3. GLADIATORZY
+--------------------------------
+
+Gladiatorzy to pojedynek dwóch wybranych zawodników, oparty na wiedzy, ryzyku i blefie.
+
+TRZY KATEGORIE
+
+Przed wyborem gladiatorów czytający ujawnia trzy możliwe kategorie znajdujące się na karcie.
+
+Jedna z nich jest wyróżniona i odpowiada rzeczywistemu pytaniu, ale inni gracze nie wiedzą, która to kategoria.
+
+Dzięki temu wybór gladiatorów jest częściowo świadomy, ale nadal obarczony ryzykiem.
+
+KTO WYBIERA GLADIATORÓW?
+
+Swoich gladiatorów wybierają:
+
+- gracz siedzący po lewej stronie czytającego,
+- gracz siedzący po prawej stronie czytającego.
+
+Pierwszeństwo wyboru ma gracz o mniejszym łącznym majątku.
+
+Przy porównaniu stosuje się wartości:
+
+brązowa = 1
+srebrna = 3
+złota = 9
+
+Jeśli obaj mają taki sam majątek, o pierwszeństwie decyduje rzut kostką.
+
+Można wybrać siebie, innego gracza, a nawet osobę czytającą kartę.
+
+Nie można wybrać osoby, która została już wskazana jako gladiator przeciwnika.
+
+POJEDYNEK
+
+Po wyborze gladiatorów czytający odczytuje pytanie.
+
+Pierwszy odpowiada gladiator wybrany jako pierwszy.
+
+Następnie gladiatorzy odpowiadają na zmianę.
+
+Każdy ma 5 sekund na swoją odpowiedź.
+
+Nie można powiedzieć „pass”.
+
+Jeśli gracz nie zna odpowiedzi, musi coś powiedzieć, może blefować lub kłamać.
+
+Po odpowiedzi przeciwnika gladiator może natychmiast ją zakwestionować, mówiąc:
+
+„Kłamiesz!”
+
+Musi to zrobić przed swoją kolejną odpowiedzią.
+
+Jeśli zakwestionowana odpowiedź była błędna:
+wygrywa oskarżający.
+
+Jeśli była poprawna:
+wygrywa oskarżony.
+
+Brak odpowiedzi w limicie 5 sekund oznacza przegraną pojedynku.
+
+NAGRODY
+
+Zwycięski gladiator otrzymuje:
+1 srebrną monetę.
+
+Gracz, który wybrał zwycięskiego gladiatora, otrzymuje:
+1 brązową monetę.
+
+--------------------------------
+6.4. DUO
+--------------------------------
+
+Duo nie polega na znalezieniu „najlepszej” odpowiedzi, lecz na znalezieniu drugiej osoby, która pomyśli tak samo.
+
+PRZEBIEG RUNDY
+
+Czytający odczytuje pytanie.
+
+Wszyscy uczestnicy mają 15 sekund na zapisanie jednej odpowiedzi na tabliczce, nie pokazując jej innym.
+
+Po zakończeniu czasu wszystkie tabliczki są odsłaniane jednocześnie.
+
+PRZEJŚCIE DALEJ
+
+Dla każdej odpowiedzi analizuje się liczbę osób, które ją podały:
+
+1 osoba:
+odpada.
+
+Dokładnie 2 osoby:
+obie przechodzą dalej.
+
+3 lub więcej osób:
+wszystkie osoby z tą odpowiedzią odpadają.
+
+Liczy się znaczenie odpowiedzi, nie identyczna pisownia.
+
+„USA” i „Stany Zjednoczone” mogą zostać uznane za tę samą odpowiedź.
+
+OBIEKTYWNE VS SUBIEKTYWNE PYTANIA
+
+Przy pytaniach obiektywnych odpowiedź musi faktycznie spełniać warunek.
+
+Przykład:
+jeśli pytanie brzmi „stolica europejskiego państwa”, dwie osoby wpisujące „Mediolan” nie tworzą poprawnego Duo, ponieważ Mediolan nie jest stolicą.
+
+Przy pytaniach skojarzeniowych odpowiedzi mogą być nietypowe, o ile sensownie mieszczą się w treści polecenia.
+
+TRZY RUNDY I BLOKOWANE ODPOWIEDZI
+
+Duo trwa maksymalnie 3 rundy, zawsze z tym samym pytaniem.
+
+Każda odpowiedź, która padła w którejkolwiek rundzie, jest zablokowana do końca całego Duo.
+
+Nie wolno jej użyć ponownie niezależnie od tego, czy gracz:
+
+- odpadł,
+- przeszedł dalej,
+- był w parze.
+
+NAGRODY
+
+Za każdą przetrwaną rundę gracz nalicza 1 brązową monetę.
+
+Wszystkie należne monety są wypłacane dopiero po zakończeniu całego Duo.
+
+Maksymalnie można zdobyć:
+
+3 brązowe monety
+
+czyli wartość:
+
+1 srebrnej monety.
+
+SUPER DUO
+
+Jeśli w trzeciej rundzie pozostają dokładnie dwie osoby i ponownie zapiszą tę samą odpowiedź, powstaje SUPER DUO.
+
+Każdy z tych dwóch graczy otrzymuje dodatkowo:
+
+1 kartę specjalną.
+
+Jeśli gracz ma już 3 karty specjalne, zamiast tego dostaje:
+
+1 srebrną monetę.
+
+--------------------------------
+6.5. LICYTACJA
+--------------------------------
+
+W Licytacji gracze obstawiają, ile odpowiedzi są w stanie podać w ciągu 30 sekund.
+
+PROWADZĄCY I WEJŚCIE
+
+Osoba, która dobrała kartę, zostaje prowadzącym Licytację i nie bierze udziału w licytowaniu.
+
+Prowadzący odczytuje tylko:
+
+kategorię
+oraz
+poziom trudności.
+
+Pytanie pozostaje jeszcze nieznane.
+
+Każdy gracz, który chce wziąć udział, musi przed poznaniem pytania postawić:
+
+1 brązową
+lub
+1 srebrną monetę
+
+jako swoją stawkę.
+
+ODCZYTANIE PYTANIA I LICYTOWANIE
+
+Po zamknięciu wejść prowadzący odczytuje pytanie.
+
+Następnie uczestnicy licytują bez ustalonej kolejności.
+
+Każdy może jako pierwszy zgłosić deklarację, np.:
+
+„3 odpowiedzi!”
+
+Kolejna deklaracja musi być wyższa.
+
+Gracze mogą w każdej chwili powiedzieć „Pass”.
+
+Po spasowaniu nie wracają już do licytacji.
+
+Licytacja trwa, aż zostanie jedna najwyższa deklaracja.
+
+W razie równoczesnych wywołań prowadzący rozstrzyga, którą usłyszał jako pierwszą.
+
+PRÓBA
+
+Zwycięzca licytacji ma 30 sekund na podanie zadeklarowanej liczby różnych poprawnych odpowiedzi.
+
+Błędne albo powtórzone odpowiedzi nie kończą próby.
+
+Po prostu się nie liczą, a czas biegnie dalej.
+
+SUKCES
+
+Jeśli gracz spełni deklarację:
+
+- odzyskuje swoją stawkę,
+- otrzymuje z banku dodatkową monetę tego samego nominału.
+
+Pozostali uczestnicy Licytacji tracą swoje postawione monety do banku.
+
+PORAŻKA
+
+Jeśli gracz nie spełni deklaracji:
+
+- traci swoją stawkę,
+- pozostali uczestnicy odzyskują swoje monety.
+
+Licytacja nie ma dodatkowej standardowej nagrody.
+
+Ekonomia wynika wyłącznie ze stawki i wyniku zakładu.
+
+TYLKO JEDEN LUB NIKT
+
+Jeśli tylko jedna osoba zdecyduje się wejść, po poznaniu pytania deklaruje dowolną liczbę, minimum 1, i podejmuje normalną 30-sekundową próbę.
+
+Jeśli nikt nie wejdzie, prowadzący musi w ciągu 10 sekund podać przynajmniej jedną poprawną odpowiedź.
+
+Jeśli mu się nie uda, traci 1 brązową monetę.
+
+--------------------------------
+6.6. SOJUSZ
+--------------------------------
+
+Sojusz jest asymetryczną rozgrywką kooperacyjną, dodatkowo zaprojektowaną jako mechanizm balansujący najmocniejszych graczy.
+
+USTALENIE CELU
+
+Po wylosowaniu Sojuszu najpierw rzuca się dwoma kostkami D6.
+
+Suma oczek określa liczbę poprawnych odpowiedzi, które Sojusz musi podać łącznie.
+
+Zakres:
+
+od 2 do 12.
+
+Dopiero po rzucie aktywny gracz sprawdza treść pytania.
+
+WYBÓR SOJUSZNIKA
+
+Aktywny gracz wybiera jednego sojusznika.
+
+Dopiero potem czyta pytanie na głos.
+
+PIERWSZA CZĘŚĆ
+
+Aktywny gracz odpowiada jako pierwszy.
+
+Ma 15 sekund na podanie jak największej liczby różnych poprawnych odpowiedzi.
+
+Nie może celowo zakończyć swojej części wcześniej.
+
+Jeśli sam osiągnie wymagany wynik, Sojusz natychmiast odnosi sukces i sojusznik nie musi odpowiadać.
+
+DRUGA CZĘŚĆ
+
+Jeśli nadal brakuje odpowiedzi, głos przechodzi do sojusznika.
+
+Sojusznik ma 15 sekund na uzupełnienie brakującej liczby odpowiedzi.
+
+Każde pytanie Sojuszu musi być skonstruowane tak, by pozwalało na podanie co najmniej 12 poprawnych odpowiedzi.
+
+SUKCES
+
+Jeśli Sojusz osiągnie wymaganą liczbę odpowiedzi:
+
+aktywny/czytający otrzymuje:
+1 srebrną monetę.
+
+Sojusznik:
+nie otrzymuje nagrody.
+
+PORAŻKA
+
+Jeśli Sojusz nie osiągnie celu:
+
+aktywny gracz:
+nic nie traci.
+
+Sojusznik:
+traci 1 brązową monetę.
+
+Ta asymetria jest celowa – często wybierany ekspert regularnie naraża się na dodatkowe ryzyko.
+
+--------------------------------------------------
+7. KARTY SPECJALNE
+--------------------------------------------------
+
+7.1. ZASADY OGÓLNE
+
+Gracz może posiadać maksymalnie 3 karty specjalne na ręce.
+
+Kart nie można dobrowolnie odrzucać tylko po to, by zwolnić miejsce.
+
+Należy je legalnie zagrać w odpowiednim momencie.
+
+Karty na ręce pozostają tajne dla innych graczy.
+
+Nie ma ogólnego limitu liczby kart specjalnych zagrywanych przez jednego gracza w rundzie, o ile każda z nich jest zagrana w swoim legalnym oknie czasowym.
+
+Rozkład kart w talii specjalnej jest nierówny.
+
+Najsłabszy Pomidor występuje najczęściej, a silniejsze efekty rzadziej.
+
+7.2. TIMING KART SPECJALNYCH
+
+Najważniejsza kolejność zdarzeń w typowej turze:
+
+1. Wymiana monet
+2. Sprawdzenie zwycięstwa
+3. Hazardzista / Leń
+4. Rzut kostką
+5. Ewentualne 6 i dobranie karty specjalnej
+6. Dobranie karty pytania
+7. Błazen
+8. Odczytanie pytania
+9. Rozgrywka
+10. Pomidor
+11. Ustalenie wyniku
+12. Natychmiastowe okno na Rewers
+13. Rozliczenie monet
+
+--------------------------------
+7.3. HAZARDZISTA
+--------------------------------
+
+Hazardzista to karta trzymana na ręce, która nie jest rozpatrywana natychmiast po dobraniu.
+
+Może zostać zagrana tylko na początku własnej kolejnej tury, przed standardowym rzutem kostką.
+
+Hazardzista dobrany po wyrzuceniu 6 w tej samej turze nie może zostać użyty od razu.
+
+Po rozpatrzeniu Hazardzisty gracz normalnie kontynuuje swoją kolejkę.
+
+HAZARD ZA BRĄZOWĄ LUB SREBRNĄ
+
+Gracz wybiera jednego przeciwnika oraz stawkę:
+
+1 brązowa
+albo
+1 srebrna moneta.
+
+Następnie wybiera:
+
+„parzysta”
+albo
+„nieparzysta”.
+
+Przeciwnik rzuca 2D6.
+
+Liczy się parzystość sumy oczek.
+
+Jeśli Hazardzista trafi:
+przeciwnik przekazuje mu monetę zadeklarowanego nominału.
+
+Jeśli nie trafi:
+Hazardzista przekazuje taką monetę przeciwnikowi.
+
+VA BANQUE
+
+Hazardzista może zaryzykować 1 złotą monetę w trybie Va Banque.
+
+Wskazuje konkretny wynik od 1 do 6.
+
+Przeciwnik rzuca 1D6.
+
+Jeśli wynik jest dokładnie taki jak obstawiony:
+przeciwnik przekazuje Hazardziście 1 złotą monetę.
+
+Jeśli wynik jest inny:
+Hazardzista przekazuje przeciwnikowi 1 złotą monetę.
+
+W Va Banque obie osoby muszą faktycznie posiadać co najmniej 1 złotą monetę.
+
+Nie wolno zastępować jej równowartością innych nominałów.
+
+--------------------------------
+7.4. REWERS
+--------------------------------
+
+Rewers jest kartą reakcji.
+
+Może ją zagrać dowolny gracz, nawet jeśli nie brał udziału w rozgrywce.
+
+MOMENT ZAGRANIA
+
+Rewers musi zostać zagrany natychmiast po ogłoszeniu wyniku rundy lub zakładu, ale przed jakimkolwiek fizycznym przeniesieniem monet.
+
+Schemat:
+
+wynik
+→
+Rewers
+→
+monety
+
+Jeżeli choć jedna moneta została już rozdana, oddana albo przeniesiona, jest za późno na Rewers.
+
+DZIAŁANIE
+
+Rewers odwraca wszystkie transfery monet objęte danym rozliczeniem.
+
+Kto miał otrzymać daną kwotę:
+musi ją oddać.
+
+Kto miał oddać daną kwotę:
+otrzymuje taką samą kwotę.
+
+Rewers zmienia wyłącznie ekonomiczne rozliczenie.
+
+Nie zmienia:
+- tego, kto wygrał rundę,
+- poprawności odpowiedzi,
+- eliminacji,
+- wyniku merytorycznego gry.
+
+W Licytacji Rewers odwraca końcowy bilans zysków i strat po rozstrzygnięciu zakładu, traktując postawione monety jako depozyt.
+
+Rewers może też zostać użyty przy Hazardziście, włącznie z Va Banque.
+
+Na jedno rozliczenie może zadziałać maksymalnie 1 Rewers.
+
+Nie można zagrać Rewersu na Rewers.
+
+--------------------------------
+7.5. BŁAZEN
+--------------------------------
+
+Błazen pozwala czytającemu całkowicie zignorować przygotowane pytanie.
+
+Może zostać zagrany wyłącznie przez osobę pełniącą rolę czytającego/prowadzącego.
+
+MOMENT ZAGRANIA
+
+Błazen musi zostać zagrany po dobraniu karty pytania, ale przed ujawnieniem jej treści pozostałym graczom.
+
+Po zagraniu Błazna czytający może zignorować:
+
+- oryginalne pytanie,
+- kategorię,
+- poziom trudności.
+
+Musi jednak zachować wylosowany typ rozgrywki:
+
+Ruletka
+Gladiatorzy
+Duo
+Licytacja
+Sojusz
+
+Następnie sam wymyśla pytanie.
+
+OGRANICZENIA
+
+Pytanie Błazna:
+
+- nie może opierać się na prywatnej wiedzy o konkretnym uczestniku,
+- nie może być skonstruowane tak, żeby tylko jedna konkretna osoba mogła znać odpowiedź,
+- musi mieć więcej niż jedną możliwą sensowną odpowiedź,
+- musi być możliwe do prawidłowego rozegrania w wylosowanym trybie.
+
+Przykład:
+Sojusz wymaga co najmniej 12 możliwych odpowiedzi.
+
+Błazen nie działa w Target.
+
+--------------------------------
+7.6. POMIDOR
+--------------------------------
+
+Pomidor jest najprostszą i jedną z najsłabszych kart specjalnych.
+
+Można go zagrać dokładnie w momencie, gdy gracz ma udzielić odpowiedzi.
+
+Zamiast normalnej odpowiedzi gracz mówi:
+
+„POMIDOR”.
+
+Pomidor jest uznawany za 1 poprawną odpowiedź.
+
+Karta trafia na stos odrzuconych.
+
+DZIAŁANIE W TRYBACH
+
+Ruletka:
+Pomidor ratuje gracza przed odpadnięciem w danej kolejce.
+
+Gladiatorzy:
+Pomidor jest traktowany jak prawidłowa odpowiedź.
+Przeciwnik, który krzyknie „Kłamiesz!”, przegrywa zakwestionowanie.
+
+Licytacja:
+Pomidor liczy się jako 1 odpowiedź do zadeklarowanego wyniku.
+
+Sojusz:
+Pomidor dodaje 1 odpowiedź do wspólnego wyniku Sojuszu.
+
+Duo:
+Pomidor nie działa.
+
+Target:
+Pomidor nie działa.
+
+--------------------------------
+7.7. LEŃ
+--------------------------------
+
+Leń pozwala całkowicie zrezygnować z udziału w nadchodzącej rozgrywce i spróbować zarobić na pracy pozostałych.
+
+Leń jest zagrywany na początku własnej kolejki, przed standardowym rzutem kostką.
+
+Jest to to samo okno co Hazardzista.
+
+Gracz nie wie jeszcze, jaki tryb zostanie wylosowany.
+
+Po zagraniu Lenia gracz wyłącza się z nadchodzącej rozgrywki jako uczestnik.
+
+NAGRODA
+
+Po zakończeniu rozgrywki Leń sprawdza najwyższą rzeczywistą dodatnią nagrodę, jaka po pełnym rozliczeniu przypadła któremuś uczestnikowi.
+
+Otrzymuje dokładnie taką samą wartość.
+
+Jeśli najwyższa dodatnia nagroda to 1 srebrna:
+Leń otrzymuje 1 srebrną.
+
+Jeśli nikt nie uzyskał dodatniej nagrody:
+Leń otrzymuje 0.
+
+LEŃ A REWERS
+
+Najpierw rozpatruje się wynik rundy oraz ewentualny Rewers.
+
+Dopiero potem ustala się najwyższą rzeczywistą dodatnią nagrodę.
+
+Jeśli wskutek Rewersu osoba, która miała wygrać, zamiast nagrody ponosi stratę i żadna dodatnia nagroda nie pozostaje:
+Leń otrzymuje 0.
+
+Sam efekt Rewersu nie jest nakładany drugi raz na wypłatę Lenia.
+
+LEŃ A LICYTACJA I KARTY SPECJALNE
+
+Przy ustalaniu najwyższej nagrody w Licytacji liczy się rzeczywisty zysk, a nie zwrot własnego depozytu.
+
+Leń kopiuje wynik podstawowej rozgrywki.
+
+Nie kopiuje wyników samodzielnie rozpatrywanych kart specjalnych, np. Hazardzisty.
+
+--------------------------------------------------
+8. STRONA INTERNETOWA QUIZ ARENA
+--------------------------------------------------
+
+Strona Quiz Arena jest cyfrowym wsparciem fizycznej gry.
+
+Nie zastępuje:
+- kart,
+- monet,
+- tabliczek,
+- bezpośredniej interakcji między graczami.
+
+Jej najważniejszą funkcją jest weryfikacja odpowiedzi i rozstrzyganie sporów.
+
+Karty pytań celowo nie zawierają odpowiedzi, aby sprzyjać dyskusji i korzystaniu ze strony.
+
+HIERARCHIA ROZSTRZYGANIA SPORÓW
+
+Jeżeli pojawia się spór:
+
+1. Pierwszeństwo ma strona Quiz Arena. Jeśli pozwala jednoznacznie rozstrzygnąć odpowiedź, jej wynik jest wiążący.
+
+2. Jeżeli strona nie rozstrzyga przypadku, decyzję podejmują gracze niezwiązani bezpośrednio ze sporem.
+
+WYJĄTEK – LICYTACJA
+
+W Licytacji rolę prowadzącego pełni czytający.
+
+Jeśli strona nie rozstrzyga sytuacji, ostateczną decyzję podejmuje prowadzący Licytację.
+
+Jeśli grupa nadal nie jest w stanie dojść do jednoznacznego wyniku:
+
+rozgrywka zostaje anulowana.
+
+Nikt nie otrzymuje ani nie traci monet.
+
+W Licytacji wszystkie depozyty wracają do właścicieli.
+
+TIMER
+
+Strona może pełnić funkcję wygodnego timera dla limitów:
+
+5 sekund
+10 sekund
+15 sekund
+30 sekund
+
+Gra nie powinna być jednak uzależniona od konkretnego interfejsu.
+
+Można używać dowolnego stopera.
+
+Strona ma także udostępniać:
+
+- pełną instrukcję,
+- FAQ,
+- informacje o kategoriach,
+- opisy kart specjalnych,
+- dane o projekcie,
+- kontakt.
+
+--------------------------------------------------
+9. ZASADY OGÓLNE, BALANS I STOSY KART
+--------------------------------------------------
+
+9.1. ROZSTRZYGANIE ODPOWIEDZI
+
+Przy ocenie odpowiedzi liczy się przede wszystkim znaczenie, a nie forma językowa.
+
+Synonimy, skróty oraz różne sposoby zapisu tego samego pojęcia mogą zostać uznane za tę samą odpowiedź.
+
+W pytaniach obiektywnych odpowiedź musi faktycznie spełniać warunek pytania.
+
+W pytaniach subiektywnych i skojarzeniowych dopuszczalne są odpowiedzi nietypowe, jeśli logicznie mieszczą się w treści polecenia.
+
+9.2. POZIOM TRUDNOŚCI
+
+Poziom trudności znajduje się na karcie i jest losowy.
+
+Nie zmienia wartości standardowej nagrody.
+
+Ma znaczenie głównie informacyjne i strategiczne.
+
+Największe znaczenie ma w Licytacji, gdzie gracze znają trudność przed decyzją o wejściu.
+
+9.3. STOSY ODRZUCONYCH
+
+Zużyte karty pytań odkłada się na odpowiednie stosy odrzuconych dla każdej talii.
+
+Zużyte karty specjalne trafiają na osobny stos.
+
+Jeśli talia kart specjalnych się wyczerpie:
+
+stos odrzuconych należy potasować i utworzyć z niego nową talię.
+
+Liczba kart pytań jest projektowana tak, by standardowa partia nie wyczerpała talii.
+
+9.4. PODSTAWOWY BALANS EKONOMICZNY
+
+Standardowa duża nagroda w większości trybów odpowiada mniej więcej 1 srebrnej monecie.
+
+Ruletka:
+1 srebrna dla zwycięzcy.
+
+Gladiatorzy:
+1 srebrna dla zwycięskiego gladiatora
++
+1 brązowa dla wybierającego.
+
+Duo:
+1 brązowa za każdą przetrwaną rundę,
+maksymalnie 3 brązowe,
+czyli wartość 1 srebrnej.
+
+Licytacja:
+zysk wynika z podwojenia własnej stawki,
+brak osobnej nagrody.
+
+Sojusz:
+1 srebrna dla czytającego przy sukcesie,
+sojusznik ryzykuje brązową przy porażce.
+
+9.5. FILOZOFIA KAR
+
+Quiz Arena nie opiera się na systematycznym karaniu graczy za każdą błędną odpowiedź.
+
+W większości trybów przegraną jest przede wszystkim:
+
+- brak nagrody,
+- odpadnięcie z rundy,
+- utrata możliwości dalszej rywalizacji w danym pytaniu.
+
+Utrata monet pojawia się głównie tam, gdzie wynika bezpośrednio z charakteru mechaniki:
+
+Licytacja
+Sojusz
+Hazardzista
+Rewers
+
+Dzięki temu słabszy quizowo gracz nie jest automatycznie spychany na dno ekonomii po kilku błędach.
+
+--------------------------------------------------
+10. SKRÓT JEDNEJ TURY
+--------------------------------------------------
+
+Ten rozdział powinien wyglądać jak czytelna cyfrowa ściąga.
+
+1. Wymień obowiązkowo monety.
+
+2. Sprawdź, czy masz 5 złotych.
+
+3. Opcjonalnie zagraj Hazardzistę i/lub Lenia.
+
+4. Rzuć D6.
+
+5. Jeśli wypadnie 6 – dobierz kartę specjalną lub otrzymaj srebrną przy pełnej ręce i rzuć ponownie.
+
+6. Wynik 1–5 wskazuje talię rozgrywki.
+
+7. Dobierz kartę.
+
+8. Jeśli to Target – rozegraj Target zamiast standardowego trybu.
+
+9. Rozegraj wskazany tryb:
+Ruletka,
+Gladiatorzy,
+Duo,
+Licytacja,
+Sojusz.
+
+10. Po ogłoszeniu wyniku następuje natychmiastowe okno na Rewers.
+
+11. Rozlicz monety.
+
+12. Kolej przechodzi zgodnie z ruchem wskazówek zegara.
+
+==================================================
+11. RESPONSIVE / MOBILE
+==================================================
+
+Priorytetem jest telefon.
+
+Na szerokościach mobile:
+
+- padding boczny około 20–24 px,
+- duże nagłówki nie mogą wychodzić poza ekran,
+- wszystkie bloki przykładów muszą być pełnej dostępnej szerokości,
+- listy powinny być łatwe do skanowania,
+- tap targety minimum około 44 px,
+- OptionWheel musi działać płynnie,
+- żadnych poziomych scrolli.
+
+Nie chowaj merytorycznej treści za accordionami tylko dlatego, że strona jest długa.
+
+Cała instrukcja ma pozostać dostępna przez zwykły scroll.
+
+==================================================
+12. DESKTOP
+==================================================
+
+Na desktopie instrukcja może być bardziej editorial.
+
+Możesz użyć:
+- szerokich marginesów,
+- asymetrycznego układu,
+- sticky numeru sekcji lub krótkiego labelu,
+- max-width dla treści około 760–900 px.
+
+Nie twórz klasycznego lewego sidebara jak w dokumentacji technicznej.
+
+Quiz Arena ma pozostać wizualnie grą, nie dokumentacją API.
+
+==================================================
+13. SEO / SEMANTYKA / ACCESSIBILITY
+==================================================
+
+Użyj prawidłowych:
+
+h1
+h2
+h3
+section
+nav
+
+Każda główna sekcja ma mieć stabilne ID, np.:
+
+instruction-intro
+instruction-box
+instruction-setup
+instruction-coins
+instruction-turn
+instruction-modes
+instruction-special-cards
+instruction-website
+instruction-general-rules
+instruction-turn-summary
+
+Te ID wykorzystaj w OptionWheel.
+
+Obsłuż prefers-reduced-motion.
+
+Zachowaj focus-visible.
+
+==================================================
+14. IMPLEMENTACJA
+==================================================
+
+Najpierw przeanalizuj istniejący kod strony `/instrukcja`.
+
+Nie przebudowuj routingu aplikacji bez potrzeby.
+
+Nie dodawaj nowych bibliotek, jeśli nie są potrzebne.
+
+Preferuj obecny stack:
+React
+TypeScript
+CSS
+
+Możesz wydzielić komponenty instrukcji do np.:
+
+src/pages/InstructionsPage.tsx
+
+src/components/Instruction/
+InstructionSection.tsx
+RuleCallout.tsx
+TimingFlow.tsx
+CoinExchange.tsx
+
+jeżeli faktycznie poprawia to czytelność kodu.
+
+Nie wkładaj całej instrukcji jako jednego gigantycznego stringa HTML.
+
+Zbuduj semantyczną strukturę React.
+
+==================================================
+15. TESTY PRZED ZAKOŃCZENIEM
+==================================================
+
+Przed zakończeniem:
+
+1. npm run typecheck
+2. npm run build
+
+Sprawdź ręcznie:
+- /
+- /sprawdz-pytanie
+- /instrukcja
+
+Sprawdź mobile około:
+390 × 844
+
+Sprawdź:
+- scroll instrukcji,
+- OptionWheel,
+- smooth scroll,
+- powrót na Start,
+- przejście do Sprawdź pytanie,
+- brak kółka na Start,
+- brak horizontal overflow.
+
+Nie rób deploymentu.
+
+Na końcu napisz mi:
+- jakie pliki zmieniłeś,
+- jak zbudowałeś strukturę instrukcji,
+- jak działa nowy OptionWheel na `/instrukcja`,
+- wynik typecheck,
+- wynik build,
+- jakie elementy UI warto dopracować w następnej iteracji.

@@ -4,7 +4,8 @@ import './SideNavigator.css'
 
 export type NavigationItem = {
   label: string
-  path: string
+  path?: string
+  onSelect?: () => void
 }
 
 export const baseNavigationItems: NavigationItem[] = [
@@ -30,7 +31,11 @@ export default function SideNavigator({ currentPath, items = baseNavigationItems
     if (!item) return
     setSelected(index)
     setOpen(false)
-    onNavigate(item.path)
+    if (item.onSelect) {
+      item.onSelect()
+      return
+    }
+    if (item.path) onNavigate(item.path)
   }
 
   useEffect(() => {
