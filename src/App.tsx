@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import SideNavigator, { baseNavigationItems } from './components/SideNavigator/SideNavigator'
 import InstructionsPage from './pages/InstructionsPage'
 import { lookupQuestion, type QuestionLookupResult } from './data/questions'
+import { verifyQuestionAnswer, type VerificationResult } from './data/questions/questionVerification'
 
 const normalizePath = (pathname: string) => {
   const path = pathname.replace(/\/+$/, '')
@@ -73,6 +74,14 @@ function StartPage({ navigate }: { navigate: Navigate }) {
 function QuestionsPage({ navigate }: { navigate: Navigate }) {
   const [questionId, setQuestionId] = useState('')
   const [lookupResult, setLookupResult] = useState<QuestionLookupResult | null>(null)
+  const [answer, setAnswer] = useState('')
+  const [verificationResult, setVerificationResult] = useState<VerificationResult | null>(null)
+
+  const findQuestion = () => {
+    setLookupResult(lookupQuestion(questionId))
+    setAnswer('')
+    setVerificationResult(null)
+  }
 
   return (
     <main className="site-shell utility-page">
@@ -87,7 +96,7 @@ function QuestionsPage({ navigate }: { navigate: Navigate }) {
           Wpisz ID karty, aby wyświetlić jej zatwierdzoną treść.
         </p>
 
-        <form className="question-checker" onSubmit={(event) => { event.preventDefault(); setLookupResult(lookupQuestion(questionId)) }}>
+        <form className="question-checker" onSubmit={(event) => { event.preventDefault(); findQuestion() }}>
           <label htmlFor="question-number">ID karty</label>
           <input
             id="question-number"
@@ -110,6 +119,30 @@ function QuestionsPage({ navigate }: { navigate: Navigate }) {
               {lookupResult.question.difficulty && <div><dt>Poziom trudności</dt><dd>{lookupResult.question.difficulty}</dd></div>}
             </dl>
             <p>{lookupResult.question.question}</p>
+            <form className="answer-checker" onSubmit={(event) => {
+              event.preventDefault()
+              setVerificationResult(verifyQuestionAnswer(answer, lookupResult.question))
+            }}>
+              <label htmlFor="player-answer">Twoja odpowiedź</label>
+              <input
+                id="player-answer"
+                type={lookupResult.question.mode === 'Target' ? 'number' : 'text'}
+                inputMode={lookupResult.question.mode === 'Target' ? 'decimal' : 'text'}
+                value={answer}
+                onChange={(event) => setAnswer(event.target.value)}
+                placeholder={lookupResult.question.mode === 'Target' ? 'Wpisz liczbę' : 'Wpisz swoją odpowiedź'}
+              />
+              <button type="submit">Sprawdź odpowiedź</button>
+            </form>
+            {verificationResult && (
+              <p className={`verification-result verification-result--${verificationResult.status}`} role="status">
+                {verificationResult.status === 'correct' && 'Poprawna odpowiedź'}
+                {verificationResult.status === 'incorrect' && 'Niepoprawna odpowiedź'}
+                {verificationResult.status === 'exact-target' && 'Dokładne trafienie'}
+                {verificationResult.status === 'within-target-tolerance' && 'Odpowiedź w tolerancji'}
+                {verificationResult.status === 'missing-answer-key' && 'Klucz odpowiedzi do tego pytania nie został jeszcze dodany.'}
+              </p>
+            )}
           </article>
         )}
         {lookupResult?.status === 'pending-source-transfer' && (

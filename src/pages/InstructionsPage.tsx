@@ -1,4 +1,5 @@
 import CompassLogo from '../components/CompassLogo'
+import AccordionGallery, { type AccordionGalleryItem } from '../components/AccordionGallery/AccordionGallery'
 import SideNavigator, { baseNavigationItems, type NavigationItem } from '../components/SideNavigator/SideNavigator'
 import instructionSource from '../content/instruction-source.txt?raw'
 import './InstructionsPage.css'
@@ -92,6 +93,20 @@ function renderBody(body: string) {
   })
 }
 
+function ModeAccordion({ body }: { body: string }) {
+  const items: AccordionGalleryItem[] = body
+    .split(/(?=^6\.[1-6]\. )/m)
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part, index) => {
+      const [heading, ...content] = part.split('\n')
+      const label = heading.replace(/^6\.\d+\.\s*/, '')
+      return { id: `instruction-mode-${index + 1}`, label, content: renderBody(content.join('\n').trim()) }
+    })
+
+  return <AccordionGallery items={items} orientation="vertical" trigger="hover" defaultIndex={0} expandRatio={0.55} duration={0.6} ease="power3.out" parallax={0.25} tilt={2} gap={10} radius={16} grayscale={false} />
+}
+
 export default function InstructionsPage({ navigate }: InstructionsPageProps) {
   const navigationItems: NavigationItem[] = [
     ...baseNavigationItems,
@@ -130,7 +145,7 @@ export default function InstructionsPage({ navigate }: InstructionsPageProps) {
             <div className="instruction-section__body">
               {chapter.id === 'instruction-coins' && <CoinExchange />}
               {chapter.id === 'instruction-special-cards' && <TimingFlow />}
-              {renderBody(chapter.body)}
+              {chapter.id === 'instruction-modes' ? <ModeAccordion body={chapter.body} /> : renderBody(chapter.body)}
             </div>
           </section>
         ))}

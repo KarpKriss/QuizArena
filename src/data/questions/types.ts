@@ -2,6 +2,11 @@ export const questionModes = ['Ruletka', 'Gladiatorzy', 'Duo', 'Licytacja', 'Soj
 
 export type QuestionMode = typeof questionModes[number]
 
+export type AcceptedAnswer = {
+  canonical: string
+  aliases?: string[]
+}
+
 export type QuestionRecord = {
   id: string
   category: string
@@ -9,9 +14,9 @@ export type QuestionRecord = {
   difficulty: string | null
   question: string
   answerType: string | null
-  acceptedAnswers: string[]
+  acceptedAnswers: AcceptedAnswer[]
   rejectedAnswers: string[]
-  targetAnswer: number | string | null
+  targetAnswer: number | null
   tolerance: number | null
   unit: string | null
   source: string | null
