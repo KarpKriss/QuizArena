@@ -164,6 +164,36 @@
   background: #242323;
 }
 
+.question-result {
+  margin-top: 34px;
+  padding: 24px;
+  border: 1px solid rgba(242, 199, 92, 0.25);
+  background: rgba(0, 0, 0, 0.38);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.question-result__meta,
+.question-result dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+}
+
+.question-result__meta span,
+.question-result dt {
+  color: #d9b95c;
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.question-result dl { margin: 24px 0; }
+.question-result dl div { display: grid; gap: 5px; }
+.question-result dd { margin: 0; color: #eee8de; }
+.question-result p { margin: 0; color: #f7f2e8; font-size: 1.12rem; line-height: 1.65; }
+.question-result--notice { color: #c9c1cd !important; font-size: .96rem !important; }
+
 .side-nav-current {
   display: none;
 }

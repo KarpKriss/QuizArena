@@ -4,6 +4,7 @@ import OrbitParticles from './components/OrbitParticles/OrbitParticles'
 import { useEffect, useState } from 'react'
 import SideNavigator, { baseNavigationItems } from './components/SideNavigator/SideNavigator'
 import InstructionsPage from './pages/InstructionsPage'
+import { lookupQuestion, type QuestionLookupResult } from './data/questions'
 
 const normalizePath = (pathname: string) => {
   const path = pathname.replace(/\/+$/, '')
@@ -70,6 +71,9 @@ function StartPage({ navigate }: { navigate: Navigate }) {
 }
 
 function QuestionsPage({ navigate }: { navigate: Navigate }) {
+  const [questionId, setQuestionId] = useState('')
+  const [lookupResult, setLookupResult] = useState<QuestionLookupResult | null>(null)
+
   return (
     <main className="site-shell utility-page">
       <SideNavigator currentPath="/sprawdz-pytanie" items={baseNavigationItems} onNavigate={navigate} />
@@ -80,24 +84,40 @@ function QuestionsPage({ navigate }: { navigate: Navigate }) {
         <p className="utility-page__eyebrow">QUIZ ARENA</p>
         <h1>Sprawdź pytanie</h1>
         <p className="utility-page__lead">
-          Wpisz numer pytania z karty. W kolejnym kroku podłączymy do tego właściwą bazę pytań i odpowiedzi.
+          Wpisz ID karty, aby wyświetlić jej zatwierdzoną treść.
         </p>
 
-        <form className="question-checker" onSubmit={(event) => event.preventDefault()}>
-          <label htmlFor="question-number">Numer pytania</label>
+        <form className="question-checker" onSubmit={(event) => { event.preventDefault(); setLookupResult(lookupQuestion(questionId)) }}>
+          <label htmlFor="question-number">ID karty</label>
           <input
             id="question-number"
             name="question-number"
             type="text"
-            inputMode="numeric"
-            pattern="[0-9]*"
             autoComplete="off"
-            placeholder="np. 0147"
+            placeholder="np. POL-RR-01"
             aria-describedby="question-number-hint"
+            value={questionId}
+            onChange={(event) => setQuestionId(event.target.value)}
           />
-          <span id="question-number-hint">Na razie przygotowujemy sam ekran i wpisywanie numeru.</span>
+          <span id="question-number-hint">Np. POL-RR-01, POL-DUO-12, POL-TAR-02.</span>
           <button type="submit">Sprawdź</button>
         </form>
+        {lookupResult?.status === 'found' && (
+          <article className="question-result" aria-live="polite">
+            <div className="question-result__meta"><span>{lookupResult.question.id}</span><span>{lookupResult.question.category}</span></div>
+            <dl>
+              <div><dt>Tryb</dt><dd>{lookupResult.question.mode}</dd></div>
+              {lookupResult.question.difficulty && <div><dt>Poziom trudności</dt><dd>{lookupResult.question.difficulty}</dd></div>}
+            </dl>
+            <p>{lookupResult.question.question}</p>
+          </article>
+        )}
+        {lookupResult?.status === 'pending-source-transfer' && (
+          <p className="question-result question-result--notice" role="status">Dane tej karty nie zostały jeszcze zsynchronizowane.</p>
+        )}
+        {lookupResult?.status === 'not-found' && (
+          <p className="question-result question-result--notice" role="status">Nie znaleziono karty o podanym ID.</p>
+        )}
       </section>
     </main>
   )

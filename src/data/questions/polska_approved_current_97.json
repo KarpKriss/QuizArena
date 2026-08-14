@@ -1,0 +1,980 @@
+{
+  "schema_version": "1.0",
+  "project": "Quiz Arena",
+  "category": "Polska",
+  "record_count": 97,
+  "transfer_status": "FULL_EXACT_QUESTION_WORDING_RECOVERED",
+  "important": "User accepted this bank as the current set. Some source/answer-key validation work remains separate from wording approval.",
+  "questions": [
+    {
+      "id": "POL-RR-01",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "łatwe",
+      "question": "Wymień polskie miasto będące siedzibą władz województwa.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-02",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "łatwe",
+      "question": "Wymień potrawę kojarzoną z kuchnią polską.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-03",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "łatwe",
+      "question": "Wymień polskiego aktora lub polską aktorkę.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-04",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "łatwe",
+      "question": "Wymień polski zespół muzyczny.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-05",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "łatwe",
+      "question": "Wymień sieć sklepów funkcjonującą na terenie Polski.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-06",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "łatwe",
+      "question": "Wymień zamek albo pałac znajdujący się w Polsce.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-07",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "łatwe",
+      "question": "Wymień polską tradycję, zwyczaj albo obrzęd.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-08",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "średnie",
+      "question": "Wymień park narodowy znajdujący się w Polsce.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-09",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "średnie",
+      "question": "Wymień polskiego pisarza albo poetę.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-10",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "średnie",
+      "question": "Wymień polską markę produktu spożywczego.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-11",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "średnie",
+      "question": "Wymień polski film wyprodukowany po 1989 roku.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-12",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "średnie",
+      "question": "Wymień króla, królową albo innego koronowanego władcę Polski.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-13",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "średnie",
+      "question": "Wymień polskiego podróżnika, odkrywcę albo badacza świata.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-14",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "średnie",
+      "question": "Wymień polską miejscowość uzdrowiskową.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-15",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "średnie",
+      "question": "Wymień program emitowany na Polsacie, TVN, TVP1 albo TVP2, który nie jest teleturniejem, talent show ani programem konkursowym.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-16",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "trudne",
+      "question": "Wymień obiekt z Polski wpisany na Listę światowego dziedzictwa UNESCO.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-17",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "trudne",
+      "question": "Wymień miasto będące stolicą województwa w latach 1975–1998.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-18",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "trudne",
+      "question": "Wymień polskie odznaczenie państwowe albo wojskowe.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-RR-19",
+      "category": "Polska",
+      "mode": "Ruletka",
+      "difficulty": "trudne",
+      "question": "Wymień osobę, która pełniła funkcję premiera Polski po 1989 roku.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-01",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "łatwe",
+      "question": "Wymień rzekę przepływającą przez terytorium Polski.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-02",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "łatwe",
+      "question": "Wymień pasmo górskie leżące przynajmniej częściowo w Polsce.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-03",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "łatwe",
+      "question": "Wymień jezioro znajdujące się w Polsce.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-04",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "łatwe",
+      "question": "Wymień klub, który zdobył mistrzostwo Polski w piłce nożnej mężczyzn.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-05",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "łatwe",
+      "question": "Wymień polski serial telewizyjny.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-06",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "łatwe",
+      "question": "Wymień model samochodu, motocykla albo autobusu produkowanego w Polsce.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-07",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "łatwe",
+      "question": "Wymień polską postać fikcyjną z książki, filmu, serialu albo komiksu.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-08",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "średnie",
+      "question": "Wymień polskie miasto posiadające czynną sieć tramwajową.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-09",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "średnie",
+      "question": "Wymień publiczny uniwersytet działający w Polsce.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-10",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "średnie",
+      "question": "Wymień polskie imię zawierające co najmniej jeden polski znak diakrytyczny.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-11",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "średnie",
+      "question": "Wymień muzeum działające w Polsce.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-12",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "średnie",
+      "question": "Wymień festiwal muzyczny odbywający się w Polsce.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-13",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "średnie",
+      "question": "Wymień polski produkt regionalny kojarzony z konkretną częścią kraju.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-14",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "średnie",
+      "question": "Wymień polskie lotnisko obsługujące regularne połączenia pasażerskie.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-15",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "średnie",
+      "question": "Wymień bohatera polskiego komiksu.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-16",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "trudne",
+      "question": "Wymień polskiego artystę działającego na polskiej scenie od ponad 20 lat.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-17",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "trudne",
+      "question": "Wymień województwo istniejące w II Rzeczypospolitej.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-18",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "trudne",
+      "question": "Wymień polskiego dowódcę wojskowego działającego w XX wieku.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-GL-19",
+      "category": "Polska",
+      "mode": "Gladiatorzy",
+      "difficulty": "trudne",
+      "question": "Wymień polskiego kompozytora urodzonego przed 1900 rokiem.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-01",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "łatwe",
+      "question": "Zapisz polskie miasto kojarzące się z charakterystycznym zabytkiem.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-02",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "łatwe",
+      "question": "Zapisz potrawę kojarzącą się z polską Wigilią.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-03",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "łatwe",
+      "question": "Zapisz osobę kojarzącą się z polską telewizją rozrywkową.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-04",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "łatwe",
+      "question": "Zapisz zwyczaj kojarzący się z polskimi świętami.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-05",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "łatwe",
+      "question": "Zapisz polski produkt albo przekąskę kojarzącą się z dzieciństwem.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-06",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "łatwe",
+      "question": "Zapisz polską miejscowość kojarzącą się z wakacjami nad morzem.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-07",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "łatwe",
+      "question": "Zapisz polską miejscowość kojarzącą się ze sportami zimowymi.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-08",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "średnie",
+      "question": "Zapisz osobę kojarzącą się z „Solidarnością”.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-09",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "średnie",
+      "question": "Zapisz region Polski kojarzący się z charakterystyczną gwarą albo kulturą.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-10",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "średnie",
+      "question": "Zapisz tytuł książki będącej popularną polską lekturą szkolną.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-11",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "średnie",
+      "question": "Zapisz polską komedię filmową.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-12",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "średnie",
+      "question": "Zapisz polską markę słodyczy.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-13",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "średnie",
+      "question": "Zapisz wynalazek, odkrycie albo osiągnięcie kojarzone z Polakiem.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-14",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "średnie",
+      "question": "Zapisz polskie miejsce kojarzące się z pieszymi wycieczkami po górach.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-15",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "średnie",
+      "question": "Zapisz polską piosenkę często graną na weselach albo imprezach.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-16",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "trudne",
+      "question": "Zapisz polskie miejsce kojarzące się z legendą.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-17",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "trudne",
+      "question": "Zapisz polską postać historyczną znaną z przydomka albo pseudonimu.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-18",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "trudne",
+      "question": "Zapisz polskie miasto kojarzące się z przemysłem ciężkim.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-DUO-19",
+      "category": "Polska",
+      "mode": "Duo",
+      "difficulty": "trudne",
+      "question": "Zapisz przedmiot albo produkt szczególnie kojarzący się z okresem PRL-u.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-01",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "łatwe",
+      "question": "Wymień 30 największych polskich miast pod względem liczby mieszkańców według roku wskazanego na karcie.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-02",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "łatwe",
+      "question": "Wymień 30 najczęściej występujących nazwisk w Polsce według wskazanego zestawienia.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-03",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "łatwe",
+      "question": "Wymień 30 najczęściej nadawanych imion żeńskich w Polsce w roku wskazanym na karcie.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-04",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "łatwe",
+      "question": "Wymień 30 najczęściej nadawanych imion męskich w Polsce w roku wskazanym na karcie.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-05",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "łatwe",
+      "question": "Wymień 30 największych polskich przedsiębiorstw według przychodów i rankingu przyjętego w grze.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-06",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "łatwe",
+      "question": "Wymień 30 stopni wojskowych używanych w Siłach Zbrojnych RP, uwzględniając stopnie Marynarki Wojennej.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-07",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "łatwe",
+      "question": "Wymień znaki drogowe obowiązujące w Polsce według zamkniętego klucza gry.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-08",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "średnie",
+      "question": "Wymień 30 gatunków owoców uprawianych w Polsce według listy przyjętej w grze.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-09",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "średnie",
+      "question": "Wymień 30 gatunków warzyw uprawianych w Polsce według listy przyjętej w grze.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-10",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "średnie",
+      "question": "Wymień 30 najwyższych nazwanych szczytów znajdujących się w Polsce.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-11",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "średnie",
+      "question": "Wymień 30 polskich sportowców posiadających największą liczbę medali olimpijskich.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-12",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "średnie",
+      "question": "Wymień 30 najlepiej sprzedających się polskich albumów muzycznych według zestawienia przyjętego w grze.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-13",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "średnie",
+      "question": "Wymień ryby występujące w polskich rzekach, jeziorach albo Morzu Bałtyckim według zamkniętego klucza gry.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-14",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "średnie",
+      "question": "Wymień 30 zabytkowych budynków, pomników albo zespołów zabytkowych w Polsce uznanych za Pomniki Historii.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-15",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "średnie",
+      "question": "Wymień 30 najbardziej uczęszczanych stacji kolejowych w Polsce według liczby pasażerów.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-16",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "trudne",
+      "question": "Wymień 30 największych powiatów w Polsce pod względem powierzchni.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-17",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "trudne",
+      "question": "Wymień 30 najstarszych polskich miast według daty uzyskania praw miejskich przyjętej w grze.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-18",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "trudne",
+      "question": "Wymień 30 najczęściej występujących nazw ulic w Polsce.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-LIC-19",
+      "category": "Polska",
+      "mode": "Licytacja",
+      "difficulty": "trudne",
+      "question": "Wymień 30 największych sztucznych zbiorników wodnych w Polsce według powierzchni.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-01",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "łatwe",
+      "question": "Wymieńcie wspólnie 12 piłkarzy reprezentacji Polski, którzy wystąpili w niej po 2000 roku.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-02",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "łatwe",
+      "question": "Wymieńcie wspólnie 12 polskich teleturniejów, talent show albo programów konkursowych.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-03",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "łatwe",
+      "question": "Wymieńcie wspólnie 12 polskich słodyczy, przekąsek albo marek takich produktów.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-04",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "łatwe",
+      "question": "Wymieńcie wspólnie 12 atrakcji turystycznych w Polsce, które nie są nazwami całych miast.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-05",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "łatwe",
+      "question": "Wymieńcie wspólnie 10 postaci albo stworzeń występujących w polskich legendach i podaniach.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-06",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "łatwe",
+      "question": "Wymieńcie wspólnie 12 polskich gazet, czasopism albo magazynów.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-07",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "łatwe",
+      "question": "Wymieńcie wspólnie 12 polskich skrótów spotykanych w życiu codziennym, np. nazw instytucji, firm albo usług.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-08",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "średnie",
+      "question": "Wymieńcie wspólnie 4 gwary lub dialekty występujące w Polsce.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-09",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "średnie",
+      "question": "Wymieńcie wspólnie 10 polskich klubów piłkarskich.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-10",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "średnie",
+      "question": "Wymieńcie wspólnie 10 polskich miejscowości związanych z ważnymi wydarzeniami II wojny światowej.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-11",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "średnie",
+      "question": "Wymieńcie wspólnie 10 polskich kabaretów albo artystów kabaretowych.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-12",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "średnie",
+      "question": "Wymieńcie wspólnie 10 polskich skoczków narciarskich startujących w zawodach międzynarodowych.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-13",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "średnie",
+      "question": "Wymieńcie wspólnie 10 przedmiotów codziennego użytku popularnych w czasach młodości pokolenia dzisiejszych dziadków, które obecnie są rzadko używane.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-14",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "średnie",
+      "question": "Wymieńcie wspólnie 10 polskich sanktuariów albo miejsc pielgrzymkowych.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-15",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "średnie",
+      "question": "Wymieńcie wspólnie 10 czynności, które według klucza gry mogą być niedozwolone lub karalne w przestrzeni publicznej, ale zasadniczo można wykonywać je we własnym domu.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-16",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "trudne",
+      "question": "Wymieńcie wspólnie 5 laureatów Nagrody Nobla związanych z Polską według definicji przyjętej w grze.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-17",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "trudne",
+      "question": "Wymieńcie wspólnie 8 polskich filmów nominowanych do Oscara w kategorii filmu międzynarodowego albo jej historycznym odpowiedniku.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-18",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "trudne",
+      "question": "Wymieńcie wspólnie 8 koronowanych władców Polski pochowanych na Wawelu.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-SOJ-19",
+      "category": "Polska",
+      "mode": "Sojusz",
+      "difficulty": "trudne",
+      "question": "Wymieńcie wspólnie 8 miejsc bitew związanych z polskimi powstaniami narodowymi.",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer_keys/sources may still require completion",
+      "answer_data": null
+    },
+    {
+      "id": "POL-TAR-01",
+      "category": "Polska",
+      "mode": "Target",
+      "difficulty": null,
+      "question": "Ile gmin znajduje się w Polsce według stanu na dzień wskazany w oficjalnym źródle gry?",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer/tolerance/year/source stored separately and not available in this transfer",
+      "answer_data": null
+    },
+    {
+      "id": "POL-TAR-02",
+      "category": "Polska",
+      "mode": "Target",
+      "difficulty": null,
+      "question": "Ile odcinków serialu „Klan” wyemitowano do końca roku wskazanego na karcie?",
+      "approval_status": "user_accepted_current",
+      "content_validation_status": "question_wording_current; answer/tolerance/year/source stored separately and not available in this transfer",
+      "answer_data": null
+    }
+  ]
+}

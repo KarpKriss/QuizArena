@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0",
+  "project": "Quiz Arena",
+  "definition": "Registry of question banks that were explicitly accepted by the user as current/approved.",
+  "banks": [
+    {
+      "category": "Polska",
+      "prefix": "POL",
+      "expected_cards": 97,
+      "composition": {
+        "Ruletka": 19,
+        "Gladiatorzy": 19,
+        "Duo": 19,
+        "Licytacja": 19,
+        "Sojusz": 19,
+        "Target": 2
+      },
+      "approval_status": "user_accepted_current",
+      "exact_question_text_in_package": true,
+      "import_file": "data/polska_approved_current_97.json",
+      "note": "Full exact wording available. Separate answer keys/sources/definitions can still be incomplete."
+    },
+    {
+      "category": "Zwierzęta i owady",
+      "previous_name": "Zwierzęta",
+      "prefix": "ZWI",
+      "expected_cards": 97,
+      "composition": {
+        "Ruletka": 19,
+        "Gladiatorzy": 19,
+        "Duo": 19,
+        "Licytacja": 19,
+        "Sojusz": 19,
+        "Target": 2
+      },
+      "approval_status": "user_accepted_current_without_changes",
+      "exact_question_text_in_package": false,
+      "import_file": null,
+      "note": "Approval and ID ranges are recoverable, but the full literal 97-card text is only in prior chat context and is not available as a retrievable source file in this transfer. DO NOT SYNTHESIZE."
+    },
+    {
+      "category": "Natura i planeta",
+      "prefix": "NAT",
+      "expected_cards": 97,
+      "composition": {
+        "Ruletka": 19,
+        "Gladiatorzy": 19,
+        "Duo": 19,
+        "Licytacja": 19,
+        "Sojusz": 19,
+        "Target": 2
+      },
+      "approval_status": "user_accepted_current_after_rebuild",
+      "exact_question_text_in_package": false,
+      "import_file": null,
+      "note": "Current approved version exists in prior conversation state, but full literal text is not available as a retrievable source file here. DO NOT SYNTHESIZE."
+    },
+    {
+      "category": "Nauka i kosmos",
+      "prefix": "NAU",
+      "expected_cards": 97,
+      "composition": {
+        "Ruletka": 19,
+        "Gladiatorzy": 19,
+        "Duo": 19,
+        "Licytacja": 19,
+        "Sojusz": 19,
+        "Target": 2
+      },
+      "approval_status": "user_accepted_current_after_substitutions",
+      "exact_question_text_in_package": false,
+      "import_file": null,
+      "note": "Current approved version exists after approved substitutions, but full literal text is not available as a retrievable source file here. DO NOT SYNTHESIZE."
+    }
+  ],
+  "total_approved_cards_expected_across_registered_banks": 388,
+  "exact_cards_transferred_now": 97
+}
