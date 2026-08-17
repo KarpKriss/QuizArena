@@ -17,11 +17,34 @@ type GooeyNavProps = {
 
 type ActiveBounds = { left: number; top: number; width: number; height: number }
 type Direction = 'left' | 'right'
-type NavParticle = { id: number; left: number; top: number; x: number; y: number; size: number; delay: number; color: string }
+type NavParticle = {
+  id: number
+  left: number
+  top: number
+  startX: number
+  startY: number
+  endX: number
+  endY: number
+  size: number
+  delay: number
+  duration: number
+  rotation: number
+  color: string
+}
 
 const particleColors = ['#FFF4CC', '#F2C75C', '#EAB308', '#FFFFFF']
 
-export default function GooeyNav({ items, activeIndex, animationTime = 460, particleCount = 8, onNavigate }: GooeyNavProps) {
+export default function GooeyNav({
+  items,
+  activeIndex,
+  animationTime = 500,
+  particleCount = 8,
+  particleDistances = [48, 8],
+  particleR = 140,
+  timeVariance = 160,
+  colors = [1, 2, 3, 1, 2, 3, 4, 2],
+  onNavigate,
+}: GooeyNavProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const navRef = useRef<HTMLUListElement>(null)
   const navigationTimerRef = useRef<number | null>(null)
@@ -52,27 +75,47 @@ export default function GooeyNav({ items, activeIndex, animationTime = 460, part
     return () => observer.disconnect()
   }, [activeIndex])
 
-  const createParticles = (from: ActiveBounds, to: ActiveBounds, moveDirection: Direction) => {
-    const sourceEdge = moveDirection === 'right' ? from.left + from.width - 8 : from.left + 8
-    const targetEdge = moveDirection === 'right' ? to.left + 10 : to.left + to.width - 10
-    const nextParticles = Array.from({ length: particleCount }, (_, index) => {
-      const landing = index >= Math.ceil(particleCount / 2)
-      const left = landing ? targetEdge : sourceEdge
-      const spread = landing ? 18 : 26
+  const createParticles = (to: ActiveBounds, moveDirection: Direction) => {
+    const [outerDistance, innerDistance] = particleDistances
+    const safeParticleCount = Math.max(0, Math.floor(particleCount))
+    if (safeParticleCount === 0) {
+      setParticles([])
+      return
+    }
+
+    const centerX = to.left + to.width / 2
+    const centerY = to.top + to.height / 2
+    const directionOffset = moveDirection === 'right' ? -12 : 12
+    const colorIndexes = colors.length > 0 ? colors : [1]
+
+    const nextParticles = Array.from({ length: safeParticleCount }, (_, index) => {
+      const angleJitter = ((index * 17) % 9) - 4
+      const angle = (((360 / safeParticleCount) * index + angleJitter) * Math.PI) / 180
+      const verticalRatio = 0.56
+      const durationOffset = timeVariance > 0 ? ((index * 47) % timeVariance) - timeVariance / 2 : 0
+      const colorIndex = colorIndexes[index % colorIndexes.length]
+      const paletteIndex = Math.abs(colorIndex - 1) % particleColors.length
+
       return {
         id: Date.now() + index,
-        left,
-        top: from.top + from.height / 2 + (index % 2 === 0 ? -5 : 5),
-        x: (moveDirection === 'right' ? 1 : -1) * (landing ? 8 + (index % 3) * 5 : -8 - (index % 3) * 6),
-        y: (index % 3 - 1) * spread,
-        size: 3 + (index % 3) * 2,
-        delay: index * 22,
-        color: particleColors[index % particleColors.length],
+        left: centerX + directionOffset,
+        top: centerY,
+        startX: Math.cos(angle) * outerDistance,
+        startY: Math.sin(angle) * outerDistance * verticalRatio,
+        endX: Math.cos(angle) * innerDistance,
+        endY: Math.sin(angle) * innerDistance * verticalRatio,
+        size: 5 + (index % 3) * 1.5,
+        delay: 18 + index * 15,
+        duration: Math.max(360, animationTime + durationOffset),
+        rotation: (index % 2 === 0 ? 1 : -1) * (particleR / 2 + index * 7),
+        color: particleColors[paletteIndex],
       }
     })
+
     setParticles(nextParticles)
     if (particleTimerRef.current !== null) window.clearTimeout(particleTimerRef.current)
-    particleTimerRef.current = window.setTimeout(() => setParticles([]), 620)
+    const cleanupDelay = Math.max(...nextParticles.map(({ delay, duration }) => delay + duration)) + 80
+    particleTimerRef.current = window.setTimeout(() => setParticles([]), cleanupDelay)
   }
 
   const beginTransition = (element: HTMLElement, targetIndex: number) => {
@@ -84,7 +127,7 @@ export default function GooeyNav({ items, activeIndex, animationTime = 460, part
     const nextDirection: Direction = targetIndex > activeIndex ? 'right' : 'left'
     setDirection(nextDirection)
     setIsMorphing(false)
-    createParticles(activeBounds, targetBounds, nextDirection)
+    createParticles(targetBounds, nextDirection)
     setActiveBounds(targetBounds)
     window.requestAnimationFrame(() => setIsMorphing(true))
   }
@@ -141,7 +184,24 @@ export default function GooeyNav({ items, activeIndex, animationTime = 460, part
           ))}
         </ul>
         <span className="gooey-nav__particles" aria-hidden="true">
-          {particles.map((particle) => <i key={particle.id} style={{ '--particle-x': `${particle.x}px`, '--particle-y': `${particle.y}px`, '--particle-size': `${particle.size}px`, '--particle-delay': `${particle.delay}ms`, '--particle-color': particle.color, left: particle.left, top: particle.top } as React.CSSProperties} />)}
+          {particles.map((particle) => (
+            <i
+              key={particle.id}
+              style={{
+                '--particle-start-x': `${particle.startX}px`,
+                '--particle-start-y': `${particle.startY}px`,
+                '--particle-end-x': `${particle.endX}px`,
+                '--particle-end-y': `${particle.endY}px`,
+                '--particle-size': `${particle.size}px`,
+                '--particle-delay': `${particle.delay}ms`,
+                '--particle-duration': `${particle.duration}ms`,
+                '--particle-rotation': `${particle.rotation}deg`,
+                '--particle-color': particle.color,
+                left: particle.left,
+                top: particle.top,
+              } as React.CSSProperties}
+            />
+          ))}
         </span>
       </nav>
     </div>

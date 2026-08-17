@@ -22,7 +22,19 @@ const navigationItems: GooeyNavItem[] = [
 
 function AppBottomNav({ currentPath, navigate }: { currentPath: string; navigate: Navigate }) {
   const activeIndex = currentPath === '/sprawdz-pytanie' ? 1 : currentPath === '/instrukcja' ? 2 : 0
-  return <GooeyNav items={navigationItems} activeIndex={activeIndex} onNavigate={navigate} />
+  return (
+    <GooeyNav
+      items={navigationItems}
+      activeIndex={activeIndex}
+      particleCount={8}
+      particleDistances={[48, 8]}
+      particleR={140}
+      animationTime={500}
+      timeVariance={160}
+      colors={[1, 2, 3, 1, 2, 3, 4, 2]}
+      onNavigate={navigate}
+    />
+  )
 }
 
 function StartPage({ navigate }: { navigate: Navigate }) {
