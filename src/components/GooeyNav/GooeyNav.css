@@ -1,0 +1,13 @@
+.gooey-nav { position: fixed; z-index: 20; left: 50%; bottom: max(16px, calc(env(safe-area-inset-bottom) + 10px)); width: min(510px, calc(100% - 24px)); transform: translateX(-50%); }
+.gooey-nav__filters { position: absolute; width: 0; height: 0; overflow: hidden; }
+.gooey-nav__surface { border: 1px solid rgba(242, 199, 92, .34); border-radius: 999px; background: rgba(5, 4, 5, .88); box-shadow: 0 18px 44px rgba(0, 0, 0, .4), inset 0 1px rgba(255,255,255,.07); isolation: isolate; }
+.gooey-nav__items { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; min-height: 58px; padding: 5px; }
+.gooey-nav__link { position: relative; z-index: 0; min-width: 0; display: grid; place-items: center; padding: 10px 8px; border-radius: 999px; color: #d9d5d9; font-size: clamp(.64rem, 2.7vw, .78rem); font-weight: 800; letter-spacing: .055em; line-height: 1.1; text-align: center; text-decoration: none; text-transform: uppercase; transition: color var(--gooey-duration) ease, background-color var(--gooey-duration) ease, box-shadow var(--gooey-duration) ease; }
+.gooey-nav__link:hover { color: #fff4cc; }
+.gooey-nav__link--active { color: #171109; background: linear-gradient(125deg, #fff4cc, #f2c75c 56%, #eab308); box-shadow: 0 6px 16px rgba(234, 179, 8, .24), inset 0 1px rgba(255,255,255,.65); }
+.gooey-nav__link:focus-visible { outline: 2px solid #fff4cc; outline-offset: 3px; }
+.gooey-nav__burst { position: absolute; z-index: -1; inset: 50% auto auto 50%; width: 1px; height: 1px; pointer-events: none; }
+.gooey-nav__burst i { position: absolute; width: var(--particle-size); height: var(--particle-size); border-radius: 50%; background: var(--particle-color); box-shadow: 0 0 12px var(--particle-color); transform: translate(-50%, -50%); animation: gooey-nav-particle var(--gooey-duration) cubic-bezier(.2,.75,.25,1) var(--particle-delay) both; }
+@keyframes gooey-nav-particle { 0% { opacity: 0; transform: translate(-50%, -50%) scale(.25); } 16% { opacity: .95; } 100% { opacity: 0; transform: translate(calc(-50% + cos(var(--particle-angle)) * var(--particle-distance)), calc(-50% + sin(var(--particle-angle)) * var(--particle-distance))) scale(.4); } }
+@media (min-width: 761px) { .gooey-nav { width: min(450px, calc(100% - 48px)); bottom: 24px; } .gooey-nav__items { min-height: 50px; } .gooey-nav__link { font-size: .68rem; padding-block: 8px; } }
+@media (prefers-reduced-motion: reduce) { .gooey-nav__link { transition: none; } .gooey-nav__burst { display: none; } }

@@ -1,4 +1,4 @@
-.instructions-page { position: relative; min-height: 100svh; overflow-x: clip; color: #f3efe7; background: #070509; }
+.instructions-page { position: relative; min-height: 100svh; overflow-x: clip; padding-bottom: 116px; color: #f3efe7; background: #070509; }
 .instructions-page__backdrop { position: fixed; inset: 0; pointer-events: none; background: radial-gradient(circle at 80% 8%, rgba(217,170,61,.1), transparent 28rem), linear-gradient(180deg,#09070b,#050405 56%); }
 .instructions-hero, .instructions-content { position: relative; z-index: 1; width: min(900px, calc(100% - 48px)); margin: 0 auto; }
 .instructions-hero { min-height: min(86svh, 760px); padding: max(48px, calc(env(safe-area-inset-top) + 34px)) 0 96px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
@@ -12,6 +12,13 @@
 .instructions-hero small { margin-top: 20px; color: #938c98; font-size: .8rem; }
 .instructions-hero a { margin-top: 42px; display: inline-flex; gap: 12px; align-items: center; color: #dfc272; font-size: .68rem; font-weight: 800; letter-spacing: .13em; text-decoration: none; text-transform: uppercase; }
 .instructions-hero a b { font-size: 1.3rem; }
+.instruction-toc { margin: 0 0 clamp(48px, 8vw, 96px); padding: 24px; border: 1px solid rgba(217,170,61,.22); background: linear-gradient(135deg, rgba(217,170,61,.1), rgba(0,0,0,.2)); }
+.instruction-toc > p { margin: 0 0 16px; color: #f1d688; font-size: .68rem; font-weight: 850; letter-spacing: .16em; text-transform: uppercase; }
+.instruction-toc ol { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 20px; margin: 0; padding: 0; list-style: none; }
+.instruction-toc a { display: flex; gap: 10px; align-items: baseline; padding: 9px 0; color: #d4ced6; font-size: .88rem; line-height: 1.35; text-decoration: none; transition: color .2s ease; }
+.instruction-toc a span { flex: 0 0 auto; color: #d9aa3d; font-size: .66rem; font-weight: 800; letter-spacing: .08em; }
+.instruction-toc a:hover, .instruction-toc a:focus-visible { color: #fff4cc; }
+.instruction-toc a:focus-visible { outline: 2px solid #fff4cc; outline-offset: 3px; }
 .instruction-section { scroll-margin-top: 24px; padding: clamp(76px, 12vw, 148px) 0; border-top: 1px solid rgba(217,170,61,.13); }
 .instruction-section:nth-child(even) { background: linear-gradient(90deg, transparent, rgba(217,170,61,.025), transparent); }
 .instruction-section__intro { max-width: 760px; }
@@ -29,5 +36,5 @@
 .coin-exchange i { margin: 0 9px; color: #d9aa3d; font-style: normal; font-size: 1.3rem; }.coin-exchange p { margin: 8px 0 0; color: #f1d688; font-weight: 700; }
 .coin { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; color: #070509; font-size: .76rem; }.coin--bronze { background: #b47740; }.coin--silver { background: #d0d1d2; }.coin--gold { background: #e7bd4d; }
 .timing-flow { display: grid; gap: 0; margin: 0 0 44px; padding: 0; list-style: none; border-top: 1px solid rgba(217,170,61,.2); }.timing-flow li { min-height: 48px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid rgba(217,170,61,.14); color: #d4ced6; }.timing-flow b { width: 28px; color: #d9aa3d; font-size: .68rem; letter-spacing: .08em; }
-@media (max-width: 760px) { .instructions-hero, .instructions-content { width: calc(100% - 40px); }.instructions-hero { min-height: 76svh; padding-bottom: 70px; }.instructions-hero h1 { font-size: clamp(4rem, 19vw, 6rem); }.instruction-section { padding: 76px 0; }.instruction-section__body { margin-top: 32px; }.instruction-callout { padding: 18px; }.coin-exchange { padding: 20px; }.timing-flow li { min-height: 46px; font-size: .92rem; } }
+@media (max-width: 760px) { .instructions-page { padding-bottom: 104px; }.instructions-hero, .instructions-content { width: calc(100% - 40px); }.instructions-hero { min-height: 76svh; padding-bottom: 70px; }.instructions-hero h1 { font-size: clamp(4rem, 19vw, 6rem); }.instruction-toc { padding: 20px; }.instruction-toc ol { grid-template-columns: 1fr; gap: 0; }.instruction-section { padding: 76px 0; }.instruction-section__body { margin-top: 32px; }.instruction-callout { padding: 18px; }.coin-exchange { padding: 20px; }.timing-flow li { min-height: 46px; font-size: .92rem; } }
 @media (prefers-reduced-motion: reduce) { .instructions-hero a { scroll-behavior: auto; } }

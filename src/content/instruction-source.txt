@@ -120,18 +120,12 @@ Na mobile:
 nie może wyglądać jak ściana tekstu.
 
 ==================================================
-4. NAWIGACJA OPTIONWHEEL
+4. NAWIGACJA STRONY I INSTRUKCJI
 ==================================================
 
-Na stronie `/instrukcja` boczne kółko nawigacyjne ma być widoczne zgodnie z obecnym systemem UI.
+Na wszystkich trzech głównych stronach dostępna jest globalna dolna nawigacja.
 
-Po otwarciu:
-- cała reszta ekranu mocno się ściemnia,
-- OptionWheel jest głównym elementem,
-- drag musi działać natychmiastowo pod palcem,
-- snapping dopiero po puszczeniu.
-
-Pierwsze trzy pozycje MUSZĄ zawsze pozostać bazową nawigacją aplikacji:
+Trzy pozycje pozostają bazową nawigacją aplikacji:
 
 Start
 Sprawdź pytanie
@@ -143,7 +137,7 @@ Start -> /
 Sprawdź pytanie -> /sprawdz-pytanie
 Instrukcja -> /instrukcja
 
-POD NIMI dodaj pozycje charakterystyczne dla instrukcji:
+Spis treści instrukcji jest częścią treści strony `/instrukcja`:
 
 Czym jest Quiz Arena?
 Zawartość pudełka
@@ -161,11 +155,7 @@ Kliknięcie pozycji instrukcji ma robić smooth scroll do odpowiedniej sekcji.
 Nie twórz osobnych URL dla każdego rozdziału.
 To nadal jest jedna strona `/instrukcja`.
 
-Architektura SideNavigator powinna umożliwiać przekazanie:
-- bazowych pozycji,
-- dodatkowych pozycji zależnych od aktualnej strony.
-
-Nie hardcoduj wszystkich pozycji instrukcji bezpośrednio wewnątrz bazowego komponentu nawigacji.
+Główna nawigacja i spis treści instrukcji są osobnymi elementami interfejsu.
 
 ==================================================
 5. HERO INSTRUKCJI
@@ -1346,7 +1336,7 @@ Na szerokościach mobile:
 - wszystkie bloki przykładów muszą być pełnej dostępnej szerokości,
 - listy powinny być łatwe do skanowania,
 - tap targety minimum około 44 px,
-- OptionWheel musi działać płynnie,
+- globalna dolna nawigacja musi działać płynnie,
 - żadnych poziomych scrolli.
 
 Nie chowaj merytorycznej treści za accordionami tylko dlatego, że strona jest długa.
@@ -1394,7 +1384,7 @@ instruction-website
 instruction-general-rules
 instruction-turn-summary
 
-Te ID wykorzystaj w OptionWheel.
+Te ID wykorzystaj w spisie treści instrukcji i linkach hash.
 
 Obsłuż prefers-reduced-motion.
 
@@ -1450,11 +1440,11 @@ Sprawdź mobile około:
 
 Sprawdź:
 - scroll instrukcji,
-- OptionWheel,
+- globalną dolną nawigację,
 - smooth scroll,
 - powrót na Start,
 - przejście do Sprawdź pytanie,
-- brak kółka na Start,
+- obecność nawigacji na Start,
 - brak horizontal overflow.
 
 Nie rób deploymentu.
@@ -1462,7 +1452,7 @@ Nie rób deploymentu.
 Na końcu napisz mi:
 - jakie pliki zmieniłeś,
 - jak zbudowałeś strukturę instrukcji,
-- jak działa nowy OptionWheel na `/instrukcja`,
+- jak działa spis treści na `/instrukcja`,
 - wynik typecheck,
 - wynik build,
 - jakie elementy UI warto dopracować w następnej iteracji.

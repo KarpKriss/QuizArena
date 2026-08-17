@@ -1,12 +1,8 @@
 import CompassLogo from '../components/CompassLogo'
 import AccordionGallery, { type AccordionGalleryItem } from '../components/AccordionGallery/AccordionGallery'
-import SideNavigator, { baseNavigationItems, type NavigationItem } from '../components/SideNavigator/SideNavigator'
+import { useEffect } from 'react'
 import instructionSource from '../content/instruction-source.txt?raw'
 import './InstructionsPage.css'
-
-type InstructionsPageProps = {
-  navigate: (path: string) => void
-}
 
 type Chapter = {
   id: string
@@ -107,21 +103,24 @@ function ModeAccordion({ body }: { body: string }) {
   return <AccordionGallery items={items} orientation="vertical" trigger="hover" defaultIndex={0} expandRatio={0.55} duration={0.6} ease="power3.out" parallax={0.25} tilt={2} gap={10} radius={16} grayscale={false} />
 }
 
-export default function InstructionsPage({ navigate }: InstructionsPageProps) {
-  const navigationItems: NavigationItem[] = [
-    ...baseNavigationItems,
-    ...chapters.map((chapter) => ({
-      label: chapter.label,
-      onSelect: () => document.getElementById(chapter.id)?.scrollIntoView({
-        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-        block: 'start',
-      }),
-    })),
-  ]
+export default function InstructionsPage() {
+  const scrollToChapter = (id: string, behavior: ScrollBehavior = 'smooth') => {
+    document.getElementById(id)?.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : behavior,
+      block: 'start',
+    })
+  }
+
+  useEffect(() => {
+    const chapterId = window.location.hash.slice(1)
+    if (!chapterId) return
+
+    const frame = window.requestAnimationFrame(() => scrollToChapter(chapterId, 'auto'))
+    return () => window.cancelAnimationFrame(frame)
+  }, [])
 
   return (
     <main className="instructions-page">
-      <SideNavigator currentPath="/instrukcja" items={navigationItems} onNavigate={navigate} />
       <div className="instructions-page__backdrop" aria-hidden="true" />
 
       <header className="instructions-hero">
@@ -131,10 +130,22 @@ export default function InstructionsPage({ navigate }: InstructionsPageProps) {
         <h1>Instrukcja</h1>
         <div className="instructions-hero__meta"><span>Wersja 1.0</span><span>Sierpień 2026</span></div>
         <small>Przeczytaj przed pierwszą rozgrywką.</small>
-        <a href="#instruction-intro">Przewiń, aby czytać <b aria-hidden="true">↓</b></a>
+        <a href="#instruction-intro" onClick={(event) => { event.preventDefault(); scrollToChapter('instruction-intro') }}>Przewiń, aby czytać <b aria-hidden="true">↓</b></a>
       </header>
 
       <div className="instructions-content">
+        <nav className="instruction-toc" aria-label="Spis treści instrukcji">
+          <p>Spis treści</p>
+          <ol>
+            {chapters.map((chapter) => (
+              <li key={chapter.id}>
+                <a href={`#${chapter.id}`} onClick={(event) => { event.preventDefault(); scrollToChapter(chapter.id) }}>
+                  <span>{chapter.number}</span>{chapter.label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
         {chapters.map((chapter) => (
           <section className="instruction-section" id={chapter.id} key={chapter.id} aria-labelledby={`${chapter.id}-title`}>
             <div className="instruction-section__intro">

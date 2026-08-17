@@ -2,10 +2,10 @@ import SideRays from './components/SideRays/SideRays'
 import CompassLogo from './components/CompassLogo'
 import OrbitParticles from './components/OrbitParticles/OrbitParticles'
 import { useEffect, useState } from 'react'
-import SideNavigator, { baseNavigationItems } from './components/SideNavigator/SideNavigator'
 import InstructionsPage from './pages/InstructionsPage'
 import { lookupQuestion, type QuestionLookupResult } from './data/questions'
 import { verifyQuestionAnswer, type VerificationResult } from './data/questions/questionVerification'
+import GooeyNav, { type GooeyNavItem } from './components/GooeyNav/GooeyNav'
 
 const normalizePath = (pathname: string) => {
   const path = pathname.replace(/\/+$/, '')
@@ -13,6 +13,17 @@ const normalizePath = (pathname: string) => {
 }
 
 type Navigate = (path: string) => void
+
+const navigationItems: GooeyNavItem[] = [
+  { label: 'Start', href: '/' },
+  { label: 'Sprawdź pytanie', href: '/sprawdz-pytanie' },
+  { label: 'Instrukcja', href: '/instrukcja' },
+]
+
+function AppBottomNav({ currentPath, navigate }: { currentPath: string; navigate: Navigate }) {
+  const activeIndex = currentPath === '/sprawdz-pytanie' ? 1 : currentPath === '/instrukcja' ? 2 : 0
+  return <GooeyNav items={navigationItems} activeIndex={activeIndex} onNavigate={navigate} />
+}
 
 function StartPage({ navigate }: { navigate: Navigate }) {
   return (
@@ -71,21 +82,61 @@ function StartPage({ navigate }: { navigate: Navigate }) {
   )
 }
 
-function QuestionsPage({ navigate }: { navigate: Navigate }) {
+function QuestionsPage() {
   const [questionId, setQuestionId] = useState('')
   const [lookupResult, setLookupResult] = useState<QuestionLookupResult | null>(null)
   const [answer, setAnswer] = useState('')
   const [verificationResult, setVerificationResult] = useState<VerificationResult | null>(null)
+  const [searchError, setSearchError] = useState<string | null>(null)
+  const [answerError, setAnswerError] = useState<string | null>(null)
 
   const findQuestion = () => {
+    if (!questionId.trim()) {
+      setLookupResult(null)
+      setSearchError('Wpisz ID karty, aby ją sprawdzić.')
+      return
+    }
+
     setLookupResult(lookupQuestion(questionId))
+    setSearchError(null)
     setAnswer('')
+    setAnswerError(null)
     setVerificationResult(null)
   }
 
+  const verifyAnswer = () => {
+    if (!lookupResult || lookupResult.status !== 'found') return
+    if (!answer.trim()) {
+      setAnswerError('Wpisz swoją odpowiedź przed sprawdzeniem.')
+      return
+    }
+
+    setAnswerError(null)
+    setVerificationResult(verifyQuestionAnswer(answer, lookupResult.question))
+  }
+
+  useEffect(() => {
+    if (!verificationResult) return
+
+    const frame = window.requestAnimationFrame(() => {
+      const result = document.querySelector('.verification-result')
+      const nav = document.querySelector('.gooey-nav')
+      if (!(result instanceof HTMLElement) || !(nav instanceof HTMLElement)) return
+
+      const overlap = result.getBoundingClientRect().bottom - nav.getBoundingClientRect().top + 18
+      if (overlap > 0) {
+        window.scrollBy({
+          top: overlap,
+          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+        })
+      }
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [verificationResult])
+
   return (
     <main className="site-shell utility-page">
-      <SideNavigator currentPath="/sprawdz-pytanie" items={baseNavigationItems} onNavigate={navigate} />
       <div className="utility-page__backdrop" aria-hidden="true" />
 
       <section className="utility-page__content">
@@ -106,11 +157,22 @@ function QuestionsPage({ navigate }: { navigate: Navigate }) {
             placeholder="np. POL-RR-01"
             aria-describedby="question-number-hint"
             value={questionId}
-            onChange={(event) => setQuestionId(event.target.value)}
+            aria-invalid={searchError ? true : undefined}
+            onChange={(event) => {
+              setQuestionId(event.target.value)
+              if (searchError) setSearchError(null)
+            }}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter') {
+                event.preventDefault()
+                findQuestion()
+              }
+            }}
           />
           <span id="question-number-hint">Np. POL-RR-01, POL-DUO-12, POL-TAR-02.</span>
           <button type="submit">Sprawdź</button>
         </form>
+        {searchError && <p className="form-feedback form-feedback--error" role="status">{searchError}</p>}
         {lookupResult?.status === 'found' && (
           <article className="question-result" aria-live="polite">
             <div className="question-result__meta"><span>{lookupResult.question.id}</span><span>{lookupResult.question.category}</span></div>
@@ -121,7 +183,7 @@ function QuestionsPage({ navigate }: { navigate: Navigate }) {
             <p>{lookupResult.question.question}</p>
             <form className="answer-checker" onSubmit={(event) => {
               event.preventDefault()
-              setVerificationResult(verifyQuestionAnswer(answer, lookupResult.question))
+              verifyAnswer()
             }}>
               <label htmlFor="player-answer">Twoja odpowiedź</label>
               <input
@@ -129,11 +191,22 @@ function QuestionsPage({ navigate }: { navigate: Navigate }) {
                 type={lookupResult.question.mode === 'Target' ? 'number' : 'text'}
                 inputMode={lookupResult.question.mode === 'Target' ? 'decimal' : 'text'}
                 value={answer}
-                onChange={(event) => setAnswer(event.target.value)}
+                aria-invalid={answerError ? true : undefined}
+                onChange={(event) => {
+                  setAnswer(event.target.value)
+                  if (answerError) setAnswerError(null)
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    event.preventDefault()
+                    verifyAnswer()
+                  }
+                }}
                 placeholder={lookupResult.question.mode === 'Target' ? 'Wpisz liczbę' : 'Wpisz swoją odpowiedź'}
               />
               <button type="submit">Sprawdź odpowiedź</button>
             </form>
+            {answerError && <p className="form-feedback form-feedback--error" role="status">{answerError}</p>}
             {verificationResult && (
               <p className={`verification-result verification-result--${verificationResult.status}`} role="status">
                 {verificationResult.status === 'correct' && 'Poprawna odpowiedź'}
@@ -172,7 +245,11 @@ export default function App() {
     setPath(normalizedPath)
   }
 
-  if (path === '/sprawdz-pytanie') return <QuestionsPage navigate={navigate} />
-  if (path === '/instrukcja') return <InstructionsPage navigate={navigate} />
-  return <StartPage navigate={navigate} />
+  const page = path === '/sprawdz-pytanie'
+    ? <QuestionsPage />
+    : path === '/instrukcja'
+      ? <InstructionsPage />
+      : <StartPage navigate={navigate} />
+
+  return <>{page}<AppBottomNav currentPath={path} navigate={navigate} /></>
 }
