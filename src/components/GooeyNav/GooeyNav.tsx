@@ -1,4 +1,11 @@
-import { useLayoutEffect, useRef, useState, type KeyboardEvent, type MouseEvent } from 'react'
+import {
+  useLayoutEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type KeyboardEvent,
+  type MouseEvent,
+} from 'react'
 import './GooeyNav.css'
 
 export type GooeyNavItem = { label: string; href: string }
@@ -16,8 +23,10 @@ type GooeyNavProps = {
 }
 
 type ActiveBounds = { left: number; top: number; width: number; height: number }
+type EffectBounds = ActiveBounds
 type Direction = 'left' | 'right'
-type NavParticle = {
+
+type Particle = {
   id: number
   left: number
   top: number
@@ -31,155 +40,301 @@ type NavParticle = {
   rotation: number
   color: string
 }
+}
 
-const particleColors = ['#FFF4CC', '#F2C75C', '#EAB308', '#FFFFFF']
+type Particle = {
+  id: number
+  startX: number
+  startY: number
+  endX: number
+  endY: number
+  time: number
+  scale: number
+  color: string
+  rotate: number
+  delay: number
+}
+
+const colorMap: Record<number, string> = {
+  1: '#FFF4CC',
+  2: '#F2C75C',
+  3: '#EAB308',
+  4: '#FFFFFF',
+}
 
 export default function GooeyNav({
   items,
   activeIndex,
-  animationTime = 500,
-  particleCount = 8,
-  particleDistances = [48, 8],
-  particleR = 140,
-  timeVariance = 160,
-  colors = [1, 2, 3, 1, 2, 3, 4, 2],
+  animationTime = 600,
+  particleCount = 17,
+  particleDistances = [90, 10],
+  particleR = 400,
+  timeVariance = 700,
+  colors = [1, 2, 3, 1, 2, 3, 1, 4],
   onNavigate,
 }: GooeyNavProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const navRef = useRef<HTMLUListElement>(null)
   const navigationTimerRef = useRef<number | null>(null)
   const particleTimerRef = useRef<number | null>(null)
-  const [activeBounds, setActiveBounds] = useState<ActiveBounds | null>(null)
-  const [direction, setDirection] = useState<Direction>('right')
-  const [isMorphing, setIsMorphing] = useState(false)
-  const [particles, setParticles] = useState<NavParticle[]>([])
+  const particleIdRef = useRef(0)
 
-  const updateActiveBounds = (element: HTMLElement) => {
-    const container = containerRef.current?.getBoundingClientRect()
-    const item = element.getBoundingClientRect()
-    if (!container) return
-    setActiveBounds({ left: item.left - container.left, top: item.top - container.top, width: item.width, height: item.height })
+  const [visualIndex, setVisualIndex] = useState(activeIndex)
+  const [effectBounds, setEffectBounds] = useState<EffectBounds | null>(null)
+  const [particles, setParticles] = useState<Particle[]>([])
+  const [animationNonce, setAnimationNonce] = useState(0)
+
+  const prefersReducedMotion = () =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  const noise = (n = 1) => n / 2 - Math.random() * n
+
+  const getXY = (distance: number, pointIndex: number, totalPoints: number) => {
+    const angle =
+      (((360 + noise(8)) / totalPoints) * pointIndex * Math.PI) / 180
+    return [distance * Math.cos(angle), distance * Math.sin(angle)] as const
   }
 
-  useLayoutEffect(() => {
-    const current = navRef.current?.querySelectorAll('li')[activeIndex]
-    if (current) updateActiveBounds(current)
+  const measureElement = (element: HTMLElement): EffectBounds | null => {
+    const container = containerRef.current?.getBoundingClientRect()
+    if (!container) return null
 
-    const container = containerRef.current
-    if (!container) return
-    const observer = new ResizeObserver(() => {
-      const item = navRef.current?.querySelectorAll('li')[activeIndex]
-      if (item) updateActiveBounds(item)
-    })
-    observer.observe(container)
-    return () => observer.disconnect()
-  }, [activeIndex])
+    const rect = element.getBoundingClientRect()
+    return {
+      left: rect.left - container.left,
+      top: rect.top - container.top,
+      width: rect.width,
+      height: rect.height,
+    }
+    }
+  }
 
-  const createParticles = (to: ActiveBounds, moveDirection: Direction) => {
-    const [outerDistance, innerDistance] = particleDistances
-    const safeParticleCount = Math.max(0, Math.floor(particleCount))
-    if (safeParticleCount === 0) {
+  const createParticle = (index: number): Particle => {
+    const total = Math.max(1, particleCount)
+    const rotateNoise = noise(particleR / 10)
+    const time = Math.max(420, animationTime * 2 + noise(timeVariance * 2))
+    const start = getXY(particleDistances[0], total - index, total)
+    const end = getXY(
+      particleDistances[1] + noise(7),
+      total - index,
+      total,
+    )
+    const colorKey = colors[Math.floor(Math.random() * colors.length)] ?? 1
+
+    particleIdRef.current += 1
+
+    return {
+      id: particleIdRef.current,
+      startX: start[0],
+      startY: start[1],
+      endX: end[0],
+      endY: end[1],
+      time,
+      scale: 1 + noise(0.2),
+      color: colorMap[colorKey] ?? '#FFF4CC',
+      rotate:
+        rotateNoise > 0
+          ? (rotateNoise + particleR / 20) * 10
+          : (rotateNoise - particleR / 20) * 10,
+      delay: 30 + index * 6,
+    }
+  }
+
+  const startReactBitsAnimation = () => {
+    if (prefersReducedMotion()) {
       setParticles([])
+      setAnimationNonce((value) => value + 1)
       return
     }
 
-    const centerX = to.left + to.width / 2
-    const centerY = to.top + to.height / 2
-    const directionOffset = moveDirection === 'right' ? -12 : 12
-    const colorIndexes = colors.length > 0 ? colors : [1]
-
-    const nextParticles = Array.from({ length: safeParticleCount }, (_, index) => {
-      const angleJitter = ((index * 17) % 9) - 4
-      const angle = (((360 / safeParticleCount) * index + angleJitter) * Math.PI) / 180
-      const verticalRatio = 0.56
-      const durationOffset = timeVariance > 0 ? ((index * 47) % timeVariance) - timeVariance / 2 : 0
-      const colorIndex = colorIndexes[index % colorIndexes.length]
-      const paletteIndex = Math.abs(colorIndex - 1) % particleColors.length
-
-      return {
-        id: Date.now() + index,
-        left: centerX + directionOffset,
-        top: centerY,
-        startX: Math.cos(angle) * outerDistance,
-        startY: Math.sin(angle) * outerDistance * verticalRatio,
-        endX: Math.cos(angle) * innerDistance,
-        endY: Math.sin(angle) * innerDistance * verticalRatio,
-        size: 5 + (index % 3) * 1.5,
-        delay: 18 + index * 15,
-        duration: Math.max(360, animationTime + durationOffset),
-        rotation: (index % 2 === 0 ? 1 : -1) * (particleR / 2 + index * 7),
-        color: particleColors[paletteIndex],
-      }
-    })
+    const count = Math.max(0, Math.min(particleCount, 24))
+    const nextParticles = Array.from({ length: count }, (_, index) =>
+      createParticle(index),
+    )
 
     setParticles(nextParticles)
-    if (particleTimerRef.current !== null) window.clearTimeout(particleTimerRef.current)
-    const cleanupDelay = Math.max(...nextParticles.map(({ delay, duration }) => delay + duration)) + 80
-    particleTimerRef.current = window.setTimeout(() => setParticles([]), cleanupDelay)
-  }
+    setAnimationNonce((value) => value + 1)
 
-  const beginTransition = (element: HTMLElement, targetIndex: number) => {
-    const container = containerRef.current?.getBoundingClientRect()
-    const target = element.getBoundingClientRect()
-    if (!container || !activeBounds || targetIndex === activeIndex) return
-
-    const targetBounds = { left: target.left - container.left, top: target.top - container.top, width: target.width, height: target.height }
-    const nextDirection: Direction = targetIndex > activeIndex ? 'right' : 'left'
-    setDirection(nextDirection)
-    setIsMorphing(false)
-    createParticles(targetBounds, nextDirection)
-    setActiveBounds(targetBounds)
-    window.requestAnimationFrame(() => setIsMorphing(true))
-  }
-
-  const navigateAfterMorph = (href: string) => {
-    if (!onNavigate) return
-    if (navigationTimerRef.current !== null) window.clearTimeout(navigationTimerRef.current)
-    navigationTimerRef.current = window.setTimeout(() => onNavigate(href), 240)
-  }
-
-  const handleClick = (event: MouseEvent<HTMLAnchorElement>, index: number, href: string) => {
-    const item = event.currentTarget.parentElement
-    if (item) beginTransition(item, index)
-    if (onNavigate) {
-      event.preventDefault()
-      navigateAfterMorph(href)
+    if (particleTimerRef.current !== null) {
+      window.clearTimeout(particleTimerRef.current)
     }
+
+    const longestParticle = nextParticles.reduce(
+      (longest, particle) => Math.max(longest, particle.time + particle.delay),
+      animationTime,
+    )
+
+    particleTimerRef.current = window.setTimeout(
+      () => setParticles([]),
+      longestParticle + 120,
+    )
   }
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLAnchorElement>, index: number, href: string) => {
-    if (event.key !== ' ') return
-    event.preventDefault()
-    const item = event.currentTarget.parentElement
-    if (item) beginTransition(item, index)
-    navigateAfterMorph(href)
+  const moveEffectTo = (element: HTMLElement) => {
+    const bounds = measureElement(element)
+    if (!bounds) return false
+    setEffectBounds(bounds)
+    return true
   }
 
   useLayoutEffect(() => {
-    if (!isMorphing) return
-    const timer = window.setTimeout(() => setIsMorphing(false), animationTime)
-    return () => window.clearTimeout(timer)
-  }, [animationTime, isMorphing])
+    const item = navRef.current?.querySelectorAll('li')[activeIndex]
+    if (item instanceof HTMLElement) {
+      moveEffectTo(item)
+    }
+    setVisualIndex(activeIndex)
 
-  useLayoutEffect(() => () => {
-    if (navigationTimerRef.current !== null) window.clearTimeout(navigationTimerRef.current)
-    if (particleTimerRef.current !== null) window.clearTimeout(particleTimerRef.current)
-  }, [])
+    const container = containerRef.current
+    if (!container) return
+
+    const resizeObserver = new ResizeObserver(() => {
+      const activeItem = navRef.current?.querySelectorAll('li')[activeIndex]
+      if (activeItem instanceof HTMLElement) {
+        moveEffectTo(activeItem)
+      }
+    })
+
+    resizeObserver.observe(container)
+    return () => resizeObserver.disconnect()
+  }, [activeIndex])
+
+  const navigateAfterAnimationStarts = (href: string) => {
+    if (!onNavigate) return
+
+    if (navigationTimerRef.current !== null) {
+      window.clearTimeout(navigationTimerRef.current)
+    }
+
+    const delay = prefersReducedMotion()
+      ? 0
+      : Math.min(330, Math.max(250, animationTime * 0.46))
+
+    navigationTimerRef.current = window.setTimeout(() => {
+      onNavigate(href)
+    }, delay)
+  }
+
+  const activateItem = (element: HTMLElement, index: number, href: string) => {
+    if (index === visualIndex && index === activeIndex) return
+
+    const moved = moveEffectTo(element)
+    if (!moved) {
+      onNavigate?.(href)
+      return
+    }
+
+    setVisualIndex(index)
+    startReactBitsAnimation()
+    navigateAfterAnimationStarts(href)
+  }
+
+  const handleClick = (
+    event: MouseEvent<HTMLAnchorElement>,
+    index: number,
+    href: string,
+  ) => {
+    if (!onNavigate) return
+    event.preventDefault()
+
+    const item = event.currentTarget.parentElement
+    if (!(item instanceof HTMLElement)) {
+      onNavigate(href)
+      return
+    }
+
+    activateItem(item, index, href)
+  }
+
+  const handleKeyDown = (
+    event: KeyboardEvent<HTMLAnchorElement>,
+    index: number,
+    href: string,
+  ) => {
+    if (event.key !== ' ') return
+    event.preventDefault()
+
+    const item = event.currentTarget.parentElement
+    if (!(item instanceof HTMLElement)) return
+    activateItem(item, index, href)
+  }
+
+  useLayoutEffect(
+    () => () => {
+      if (navigationTimerRef.current !== null) {
+        window.clearTimeout(navigationTimerRef.current)
+      }
+      if (particleTimerRef.current !== null) {
+        window.clearTimeout(particleTimerRef.current)
+      }
+    },
+    [],
+  )
 
   return (
-    <div className="gooey-nav" ref={containerRef} style={{ '--gooey-time': `${animationTime}ms` } as React.CSSProperties}>
+    <div className="gooey-nav" ref={containerRef}>
+      <svg className="gooey-nav__svg-filter" aria-hidden="true">
+        <defs>
+          <filter id="gooey-nav-liquid-filter" x="-80%" y="-120%" width="260%" height="340%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8"
+              result="goo"
+            />
+            <feBlend in="SourceGraphic" in2="goo" />
+          </filter>
+        </defs>
+      </svg>
+
       <nav aria-label="Główna nawigacja">
-        {activeBounds && (
+        {effectBounds && (
           <span
-            className={`gooey-nav__active-indicator${isMorphing ? ` gooey-nav__active-indicator--morphing gooey-nav__active-indicator--${direction}` : ''}`}
+            className="gooey-nav__effect"
             aria-hidden="true"
-            style={{ left: activeBounds.left, top: activeBounds.top, width: activeBounds.width, height: activeBounds.height }}
-          />
+            style={{
+              left: effectBounds.left,
+              top: effectBounds.top,
+              width: effectBounds.width,
+              height: effectBounds.height,
+            }}
+          >
+            <span key={animationNonce} className="gooey-nav__liquid">
+              <span className="gooey-nav__blob" />
+              {particles.map((particle) => (
+                <span
+                  key={particle.id}
+                  className="gooey-nav__particle"
+                  style={{
+                    '--start-x': `${particle.startX}px`,
+                    '--start-y': `${particle.startY}px`,
+                    '--end-x': `${particle.endX}px`,
+                    '--end-y': `${particle.endY}px`,
+                    '--particle-time': `${particle.time}ms`,
+                    '--particle-scale': particle.scale,
+                    '--particle-color': particle.color,
+                    '--particle-rotate': `${particle.rotate}deg`,
+                    '--particle-delay': `${particle.delay}ms`,
+                  } as CSSProperties}
+                >
+                  <span />
+                </span>
+              ))}
+            </span>
+          </span>
         )}
+
         <ul ref={navRef}>
           {items.map((item, index) => (
-            <li key={item.href} className={activeIndex === index ? 'active' : ''}>
-              <a href={item.href} aria-current={activeIndex === index ? 'page' : undefined} onClick={(event) => handleClick(event, index, item.href)} onKeyDown={(event) => handleKeyDown(event, index, item.href)}>{item.label}</a>
+            <li key={item.href} className={visualIndex === index ? 'active' : ''}>
+              <a
+                href={item.href}
+                aria-current={activeIndex === index ? 'page' : undefined}
+                onClick={(event) => handleClick(event, index, item.href)}
+                onKeyDown={(event) => handleKeyDown(event, index, item.href)}
+              >
+                {item.label}
+              </a>
             </li>
           ))}
         </ul>

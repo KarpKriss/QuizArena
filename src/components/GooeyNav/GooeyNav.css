@@ -1,3 +1,32 @@
+:root {
+  --linear-ease: linear(
+    0,
+    0.068,
+    0.19 2.7%,
+    0.804 8.1%,
+    1.037,
+    1.199 13.2%,
+    1.245,
+    1.27 15.8%,
+    1.274,
+    1.272 17.4%,
+    1.249 19.1%,
+    0.996 28%,
+    0.949,
+    0.928 33.3%,
+    0.926,
+    0.933 36.8%,
+    1.001 45.6%,
+    1.013,
+    1.019 50.8%,
+    1.018 54.4%,
+    1 63.1%,
+    0.995 68%,
+    1.001 85%,
+    1
+  );
+}
+
 .gooey-nav { position: fixed; z-index: 20; left: 50%; bottom: max(16px, calc(env(safe-area-inset-bottom) + 10px)); width: min(510px, calc(100% - 24px)); isolation: isolate; transform: translateX(-50%); }
 .gooey-nav::before { position: absolute; z-index: -1; inset: -34px -22px -28px; border-radius: 34px; background: radial-gradient(ellipse 64% 70% at 50% 72%, rgb(242 199 92 / .12), transparent 72%), linear-gradient(180deg, transparent 0%, rgb(255 244 204 / .04) 100%); backdrop-filter: blur(13px) saturate(112%); -webkit-backdrop-filter: blur(13px) saturate(112%); content: ''; mask-image: linear-gradient(to bottom, transparent, #000 28%, #000); -webkit-mask-image: linear-gradient(to bottom, transparent, #000 28%, #000); opacity: .92; pointer-events: none; }
 .gooey-nav > nav { position: relative; }
@@ -19,3 +48,4 @@
 @keyframes gooey-particle { 0% { opacity: 0; transform: translate(calc(-50% + var(--particle-start-x)), calc(-50% + var(--particle-start-y))) rotate(0deg) scale(.1); } 24% { opacity: .92; transform: translate(calc(-50% + var(--particle-start-x)), calc(-50% + var(--particle-start-y))) rotate(12deg) scale(.72); } 68% { opacity: .88; transform: translate(calc(-50% + var(--particle-end-x)), calc(-50% + var(--particle-end-y))) rotate(var(--particle-rotation)) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) rotate(var(--particle-rotation)) scale(.08); } }
 @media (min-width: 761px) { .gooey-nav { width: min(450px, calc(100% - 48px)); bottom: 24px; }.gooey-nav ul { min-height: 52px; }.gooey-nav li a { min-height: 42px; font-size: .68rem; } }
 @media (prefers-reduced-motion: reduce) { .gooey-nav__active-indicator { transition: none; }.gooey-nav__active-indicator--morphing { animation: none; }.gooey-nav__particles { display: none; }.gooey-nav::before { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); } }
+
